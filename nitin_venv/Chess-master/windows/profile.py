@@ -9,9 +9,39 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from friends import Ui_friends
+from group_Joined import Ui_Group_Joined
+from group_Not_Join import Ui_Group_Not_Joined
+from play import Ui_play
+from login_Register import Ui_account
 
 
-class Ui_MainWindow(object):
+class Ui_profile(object):
+    def friends_Navbar(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_friends()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        MainWindow.hide()
+    def group_Navbar(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_Group_Joined()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        MainWindow.hide()
+    def play_Navbar(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_play()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        MainWindow.hide()
+    def Logout_Navbar(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_account()
+        self.ui.setupUi(self.window)
+        self.window.show()
+        MainWindow.hide()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(858, 647)
@@ -49,7 +79,7 @@ class Ui_MainWindow(object):
         self.widget_4.setObjectName("widget_4")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.widget_4)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.pushButton_2 = QtWidgets.QPushButton(self.widget_4)
+        self.pushButton_2 = QtWidgets.QPushButton(self.widget_4,clicked = lambda: self.friends_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -64,7 +94,7 @@ class Ui_MainWindow(object):
         self.widget_5.setObjectName("widget_5")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_5)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget_5)
+        self.pushButton_3 = QtWidgets.QPushButton(self.widget_5,clicked = lambda: self.group_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -79,7 +109,7 @@ class Ui_MainWindow(object):
         self.widget_6.setObjectName("widget_6")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.widget_6)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.pushButton_4 = QtWidgets.QPushButton(self.widget_6)
+        self.pushButton_4 = QtWidgets.QPushButton(self.widget_6,clicked = lambda: self.play_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -96,7 +126,7 @@ class Ui_MainWindow(object):
         self.widget_7.setObjectName("widget_7")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.widget_7)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.pushButton_5 = QtWidgets.QPushButton(self.widget_7)
+        self.pushButton_5 = QtWidgets.QPushButton(self.widget_7,clicked = lambda: self.Logout_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -421,7 +451,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
+    ui = Ui_profile()
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

@@ -12,6 +12,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainWindow(object):
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(979, 647)
@@ -34,7 +35,7 @@ class Ui_MainWindow(object):
         self.widget_3.setObjectName("widget_3")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.widget_3)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.pushButton = QtWidgets.QPushButton(self.widget_3)
+        self.pushButton = QtWidgets.QPushButton(self.widget_3,clicked = lambda: self.profile_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -64,7 +65,7 @@ class Ui_MainWindow(object):
         self.widget_5.setObjectName("widget_5")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.widget_5)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.pushButton_3 = QtWidgets.QPushButton(self.widget_5)
+        self.pushButton_3 = QtWidgets.QPushButton(self.widget_5,clicked = lambda: self.group_Navbar())
         font = QtGui.QFont()
         font.setFamily("Poor Richard")
         font.setPointSize(12)
@@ -128,9 +129,9 @@ class Ui_MainWindow(object):
         self.widget.setObjectName("widget")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.widget)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.widget_2 = QtWidgets.QWidget(self.widget)
-        self.widget_2.setObjectName("widget_2")
-        self.horizontalLayout_5.addWidget(self.widget_2)
+        self.game = QtWidgets.QWidget(self.widget)
+        self.game.setObjectName("game")
+        self.horizontalLayout_5.addWidget(self.game)
         self.widget_10 = QtWidgets.QWidget(self.widget)
         self.widget_10.setMinimumSize(QtCore.QSize(100, 600))
         self.widget_10.setMaximumSize(QtCore.QSize(150, 16777215))
