@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>FriendsWindow</class>
+ <widget class="QMainWindow" name="FriendsWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
-    <height>647</height>
+    <width>854</width>
+    <height>784</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -245,41 +245,11 @@ padding-bottom: 5px</string>
              </font>
             </property>
             <property name="text">
-             <string>Group</string>
+             <string>Friends</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignHCenter|Qt::AlignTop</set>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="widget_28" native="true">
-            <property name="maximumSize">
-             <size>
-              <width>150</width>
-              <height>200</height>
-             </size>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_27">
-             <item>
-              <widget class="QPushButton" name="pushButton_6">
-               <property name="font">
-                <font>
-                 <family>Poor Richard</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-               </property>
-               <property name="text">
-                <string>leave group</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
            </widget>
           </item>
          </layout>
@@ -300,7 +270,7 @@ padding-bottom: 5px</string>
                 </font>
                </property>
                <property name="text">
-                <string>Members</string>
+                <string>Your Friends</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -344,7 +314,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>role</string>
+                   <string>status</string>
                   </property>
                  </widget>
                 </item>
@@ -355,15 +325,20 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="status1" native="true">
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
-                 <widget class="QLabel" name="label_9">
+                 <widget class="QPushButton" name="pushButton_8">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>status</string>
+                   <string>unfriend</string>
                   </property>
                  </widget>
                 </item>
@@ -418,15 +393,20 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_22" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_21">
                 <item>
-                 <widget class="QLabel" name="label_13">
+                 <widget class="QPushButton" name="pushButton_9">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>unfriend</string>
                   </property>
                  </widget>
                 </item>
@@ -481,15 +461,20 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_26" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_17">
                 <item>
-                 <widget class="QLabel" name="label_17">
+                 <widget class="QPushButton" name="pushButton_10">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>unfriend</string>
                   </property>
                  </widget>
                 </item>
@@ -506,82 +491,53 @@ padding-bottom: 5px</string>
         <widget class="QWidget" name="info" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <widget class="QWidget" name="widget_10" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_9">
+           <widget class="QWidget" name="widget_11" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
               <widget class="QLabel" name="label_2">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
-                 <pointsize>14</pointsize>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>name</string>
+                <string>Friend Name</string>
                </property>
-               <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QWidget" name="widget_11" native="true">
-               <layout class="QHBoxLayout" name="horizontalLayout_10">
-                <item>
-                 <widget class="QLabel" name="label_3">
-                  <property name="font">
-                   <font>
-                    <family>Poor Richard</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
               </widget>
              </item>
             </layout>
            </widget>
           </item>
           <item>
-           <widget class="QWidget" name="widget_14" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
+           <widget class="QWidget" name="widget_10" native="true">
+            <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLabel" name="label_5">
-               <property name="font">
-                <font>
-                 <family>Poor Richard</family>
-                 <pointsize>14</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>description</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              <widget class="QLineEdit" name="lineEdit">
+               <property name="maximumSize">
+                <size>
+                 <width>400</width>
+                 <height>16777215</height>
+                </size>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="widget_13" native="true">
-               <layout class="QHBoxLayout" name="horizontalLayout_12">
-                <item>
-                 <widget class="QLabel" name="label_4">
-                  <property name="font">
-                   <font>
-                    <family>Poor Richard</family>
-                    <pointsize>12</pointsize>
-                   </font>
-                  </property>
-                  <property name="text">
-                   <string>TextLabel</string>
-                  </property>
-                 </widget>
-                </item>
-               </layout>
+              <widget class="QPushButton" name="pushButton_7">
+               <property name="font">
+                <font>
+                 <family>Poor Richard</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+               </property>
+               <property name="text">
+                <string>Add Friend</string>
+               </property>
               </widget>
              </item>
             </layout>
