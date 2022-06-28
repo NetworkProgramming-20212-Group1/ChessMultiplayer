@@ -271,7 +271,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_8">
+              <widget class="QPushButton" name="join1">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -317,7 +317,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_9">
+              <widget class="QPushButton" name="join2">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -363,7 +363,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_10">
+              <widget class="QPushButton" name="join3">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -409,7 +409,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_11">
+              <widget class="QPushButton" name="join4">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -455,7 +455,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_12">
+              <widget class="QPushButton" name="join5">
                <property name="maximumSize">
                 <size>
                  <width>40</width>
@@ -497,7 +497,7 @@ padding-bottom: 5px</string>
            <number>20</number>
           </property>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="play">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -528,7 +528,7 @@ padding-bottom: 5px</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="custom">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -550,7 +550,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_14" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
-              <widget class="QPushButton" name="pushButton_6">
+              <widget class="QPushButton" name="create_custom">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -586,7 +586,7 @@ padding-bottom: 5px</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="pvp">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -608,7 +608,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_16" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QPushButton" name="pushButton_7">
+              <widget class="QPushButton" name="create_pvp">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>

@@ -274,7 +274,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_10" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="rank">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -296,7 +296,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_13" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_12">
              <item>
-              <widget class="QLabel" name="label_4">
+              <widget class="QLabel" name="rank_inf">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -304,7 +304,10 @@ padding-bottom: 5px</string>
                 </font>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string>gold</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::AutoText</enum>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -318,7 +321,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_11" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_10">
              <item>
-              <widget class="QLabel" name="label_3">
+              <widget class="QLabel" name="level">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -340,7 +343,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_14" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_11">
              <item>
-              <widget class="QLabel" name="label_5">
+              <widget class="QLabel" name="level_inf">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -348,7 +351,7 @@ padding-bottom: 5px</string>
                 </font>
                </property>
                <property name="text">
-                <string>TextLabel</string>
+                <string>1</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -368,7 +371,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_15" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QLabel" name="label_6">
+              <widget class="QLabel" name="Match_history">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -393,7 +396,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_16" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_26">
                 <item>
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="Match1">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -401,7 +404,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Match 1</string>
                   </property>
                  </widget>
                 </item>
@@ -475,7 +478,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_20" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_23">
                 <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="Match2">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -483,7 +486,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Match 2</string>
                   </property>
                  </widget>
                 </item>
@@ -557,7 +560,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_24" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_19">
                 <item>
-                 <widget class="QLabel" name="label_15">
+                 <widget class="QLabel" name="Match3">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -565,7 +568,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>Match 3</string>
                   </property>
                  </widget>
                 </item>

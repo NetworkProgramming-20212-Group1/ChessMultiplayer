@@ -270,7 +270,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_15" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_4">
              <item>
-              <widget class="QLabel" name="label_6">
+              <widget class="QLabel" name="Your_friends">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -292,10 +292,10 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="match1" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_13">
              <item>
-              <widget class="QWidget" name="ingame1" native="true">
+              <widget class="QWidget" name="widget_14" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_26">
                 <item>
-                 <widget class="QLabel" name="label_7">
+                 <widget class="QLabel" name="ingame1">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -311,10 +311,10 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="role1" native="true">
+              <widget class="QWidget" name="widget_16" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_25">
                 <item>
-                 <widget class="QLabel" name="label_8">
+                 <widget class="QLabel" name="status1">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -330,10 +330,10 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="status1" native="true">
+              <widget class="QWidget" name="widget_13" native="true">
                <layout class="QVBoxLayout" name="verticalLayout_5">
                 <item>
-                 <widget class="QPushButton" name="pushButton_8">
+                 <widget class="QPushButton" name="unfriend_button1">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -360,10 +360,10 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="match2" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
-              <widget class="QWidget" name="ingame2" native="true">
+              <widget class="QWidget" name="widget_17" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_23">
                 <item>
-                 <widget class="QLabel" name="label_11">
+                 <widget class="QLabel" name="ingame2">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -382,7 +382,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_21" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_22">
                 <item>
-                 <widget class="QLabel" name="label_12">
+                 <widget class="QLabel" name="status2">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -390,7 +390,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>status</string>
                   </property>
                  </widget>
                 </item>
@@ -401,7 +401,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_22" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_21">
                 <item>
-                 <widget class="QPushButton" name="pushButton_9">
+                 <widget class="QPushButton" name="unfriend_button2">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -428,10 +428,10 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="match3" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>
-              <widget class="QWidget" name="ingame3" native="true">
+              <widget class="QWidget" name="widget_18" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_19">
                 <item>
-                 <widget class="QLabel" name="label_15">
+                 <widget class="QLabel" name="ingame3">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -450,7 +450,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_25" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_18">
                 <item>
-                 <widget class="QLabel" name="label_16">
+                 <widget class="QLabel" name="status3">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -458,7 +458,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>status</string>
                   </property>
                  </widget>
                 </item>
@@ -469,7 +469,7 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_26" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_17">
                 <item>
-                 <widget class="QPushButton" name="pushButton_10">
+                 <widget class="QPushButton" name="unfriend_button3">
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
@@ -502,7 +502,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_11" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_7">
              <item>
-              <widget class="QLabel" name="label_2">
+              <widget class="QLabel" name="FriendName">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -521,7 +521,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_10" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_9">
              <item>
-              <widget class="QLineEdit" name="lineEdit">
+              <widget class="QLineEdit" name="input_friendID">
                <property name="maximumSize">
                 <size>
                  <width>400</width>
@@ -531,7 +531,7 @@ padding-bottom: 5px</string>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_7">
+              <widget class="QPushButton" name="add_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>

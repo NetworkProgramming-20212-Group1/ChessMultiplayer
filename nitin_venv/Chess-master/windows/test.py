@@ -12,11 +12,35 @@ class RegisterLogin(QDialog):
         self.loginButton.clicked.connect(self.checkLogin)
 
     def checkRegister(self):
-        self.gotoLogin()
+        reg_username = self.input_reg_username.text()
+        reg_pw = self.input_reg_pw.text()
+        reg_ingame = self.input_reg_ingame.text()
+        if(not reg_username):
+            self.inf_reg_usr.setText("Please enter your username")
+        elif(not reg_pw):
+            self.inf_reg_pw.setText("Please enter your password")
+        elif(not reg_ingame):
+            self.inf_reg_ing.setText("Please enter your ingame")
+        else:
+            print("Input username: " + reg_username + ", input password: " + reg_pw + ", input ingame: " + reg_ingame)
+            # send the information to server to check
+            self.gotoLogin()
+
     def checkLogin(self):
-        self.gotoHome()
+        log_username = self.input_log_username.text()
+        log_pw = self.input_log_pw.text()
+        if(not log_username):
+            self.inf_log_usr.setText("Please enter your username")
+        elif(not log_pw):
+            self.inf_log_pw.setText("Please enter your password")
+        else:
+            print("Input username: " + log_username + ", input password: " + log_pw)
+            # send the information to server to check
+            self.gotoHome()
+
     def gotoLogin(self):
         self.input_log_username.setFocus(True)
+
     def gotoHome(self):
         home=Home()
         widget.addWidget(home)
@@ -57,6 +81,12 @@ class Profile(QDialog):
         loadUi("profile.ui",self)
         Navbar.handler(self)
 
+    def checkRank(self):
+        pass
+    def checkLevel(self):
+        pass
+    def checkMatchHistory(self):
+        pass
     def gotoProfile(self):
         pass
     def gotoFriend(self):
