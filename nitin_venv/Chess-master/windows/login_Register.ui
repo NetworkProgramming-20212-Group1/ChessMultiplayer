@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>854</width>
+    <width>850</width>
     <height>760</height>
    </rect>
   </property>
@@ -14,9 +14,17 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>721</width>
+     <height>491</height>
+    </rect>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <item>
-     <widget class="QWidget" name="widget" native="true">
+     <widget class="QWidget" name="widget_login" native="true">
       <property name="maximumSize">
        <size>
         <width>400</width>
@@ -25,10 +33,10 @@
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0" colspan="2">
-        <widget class="QWidget" name="widget_3" native="true">
+        <widget class="QWidget" name="widget" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_login">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -50,7 +58,7 @@
         <widget class="QWidget" name="widget_6" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QLabel" name="label_4">
+           <widget class="QLabel" name="label_log_pw">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -78,7 +86,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="input_log_pw">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -94,7 +102,7 @@
         <widget class="QWidget" name="widget_5" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="label_log_username">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -122,7 +130,7 @@
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="input_log_username">
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -141,7 +149,7 @@
         <widget class="QWidget" name="widget_9" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_7">
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="loginButton">
             <property name="maximumSize">
              <size>
               <width>100</width>
@@ -168,13 +176,13 @@ padding-bottom: 7px</string>
         </widget>
        </item>
        <item row="3" column="0" colspan="2">
-        <widget class="QWidget" name="widget_16" native="true"/>
+        <widget class="QWidget" name="widget_space" native="true"/>
        </item>
       </layout>
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget_17" native="true">
+     <widget class="QWidget" name="widget_verticalLine" native="true">
       <layout class="QHBoxLayout" name="horizontalLayout_16">
        <item>
         <widget class="Line" name="line">
@@ -193,7 +201,7 @@ padding-bottom: 7px</string>
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="widget_2" native="true">
+     <widget class="QWidget" name="widget_register" native="true">
       <property name="maximumSize">
        <size>
         <width>400</width>
@@ -202,10 +210,10 @@ padding-bottom: 7px</string>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="0" column="0" colspan="2">
-        <widget class="QWidget" name="widget_4" native="true">
+        <widget class="QWidget" name="widget_2" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_8">
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_register">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -227,7 +235,7 @@ padding-bottom: 7px</string>
         <widget class="QWidget" name="widget_10" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_9">
           <item>
-           <widget class="QLabel" name="label_5">
+           <widget class="QLabel" name="reg_username">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -255,16 +263,16 @@ padding-bottom: 7px</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_12">
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QLineEdit" name="input_reg_username"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QWidget" name="widget_11" native="true">
+        <widget class="QWidget" name="widget_3" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_10">
           <item>
-           <widget class="QLabel" name="label_6">
+           <widget class="QLabel" name="password">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -292,13 +300,13 @@ padding-bottom: 7px</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QLineEdit" name="input_reg_pw"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="3" column="0">
-        <widget class="QFrame" name="frame">
+        <widget class="QFrame" name="frameIngame">
          <property name="frameShape">
           <enum>QFrame::StyledPanel</enum>
          </property>
@@ -307,7 +315,7 @@ padding-bottom: 7px</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_11">
           <item>
-           <widget class="QLabel" name="label_7">
+           <widget class="QLabel" name="ingame">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -335,16 +343,16 @@ padding-bottom: 7px</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_14">
           <item>
-           <widget class="QLineEdit" name="lineEdit_5"/>
+           <widget class="QLineEdit" name="input_reg_ingame"/>
           </item>
          </layout>
         </widget>
        </item>
        <item row="4" column="0" colspan="2">
-        <widget class="QWidget" name="widget_15" native="true">
+        <widget class="QWidget" name="widget_4" native="true">
          <layout class="QHBoxLayout" name="horizontalLayout_15">
           <item>
-           <widget class="QPushButton" name="pushButton_2">
+           <widget class="QPushButton" name="registerButton">
             <property name="maximumSize">
              <size>
               <width>100</width>
@@ -385,7 +393,16 @@ padding-bottom: 7px</string>
     </rect>
    </property>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>3</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

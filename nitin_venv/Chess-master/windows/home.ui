@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>858</width>
-    <height>647</height>
+    <width>850</width>
+    <height>760</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,6 +19,14 @@ border-image: url(chess_background2.jpg) 0 0 0 0 stretch stretch;
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>252</width>
+     <height>602</height>
+    </rect>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout_6">
     <item>
      <widget class="QWidget" name="widget_9" native="true">
@@ -48,7 +56,7 @@ border-image: url(chess_background2.jpg) 0 0 0 0 stretch stretch;
            <widget class="QWidget" name="widget_3" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout">
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="profile_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -72,7 +80,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_4" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_2">
+              <widget class="QPushButton" name="friend_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -96,7 +104,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_5" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_3">
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="group_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -120,7 +128,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_6" native="true">
             <layout class="QVBoxLayout" name="verticalLayout_2">
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="play_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -157,7 +165,7 @@ padding-bottom: 5px</string>
            <widget class="QWidget" name="widget_7" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_4">
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="logout_button">
                <property name="font">
                 <font>
                  <family>Poor Richard</family>
@@ -245,7 +253,7 @@ padding-bottom: 5px</string>
            <number>20</number>
           </property>
           <item>
-           <widget class="QLabel" name="label">
+           <widget class="QLabel" name="label_home">
             <property name="font">
              <font>
               <family>Poor Richard</family>
@@ -268,7 +276,16 @@ padding-bottom: 5px</string>
     </item>
    </layout>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>3</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

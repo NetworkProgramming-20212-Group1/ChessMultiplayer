@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>GroupWindow</class>
- <widget class="QMainWindow" name="GroupWindow">
+ <class>MainWindow</class>
+ <widget class="QWidget" name="MainWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -275,7 +275,7 @@ border : 2px solid black;
 padding-bottom: 5px</string>
                </property>
                <property name="text">
-                <string>leave group</string>
+                <string>create group</string>
                </property>
               </widget>
              </item>
@@ -288,28 +288,6 @@ padding-bottom: 5px</string>
        <item row="2" column="0" colspan="2">
         <widget class="QWidget" name="widget_12" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_3">
-          <item>
-           <widget class="QWidget" name="widget_15" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_4">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="font">
-                <font>
-                 <family>Poor Richard</family>
-                 <pointsize>18</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Members</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
           <item>
            <widget class="QWidget" name="match1" native="true">
             <layout class="QHBoxLayout" name="horizontalLayout_13">
@@ -325,7 +303,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>ingame1</string>
+                   <string>groupName1</string>
                   </property>
                  </widget>
                 </item>
@@ -344,7 +322,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>role</string>
+                   <string>groupDescription</string>
                   </property>
                  </widget>
                 </item>
@@ -353,17 +331,28 @@ padding-bottom: 5px</string>
              </item>
              <item>
               <widget class="QWidget" name="status1" native="true">
-               <layout class="QVBoxLayout" name="verticalLayout_5">
+               <layout class="QHBoxLayout" name="horizontalLayout_16">
                 <item>
-                 <widget class="QLabel" name="label_9">
+                 <widget class="QPushButton" name="pushButton_7">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>status</string>
+                   <string>join</string>
                   </property>
                  </widget>
                 </item>
@@ -388,7 +377,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>ingame2</string>
+                   <string>groupName</string>
                   </property>
                  </widget>
                 </item>
@@ -418,15 +407,26 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_22" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_21">
                 <item>
-                 <widget class="QLabel" name="label_13">
+                 <widget class="QPushButton" name="pushButton_8">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>join</string>
                   </property>
                  </widget>
                 </item>
@@ -451,7 +451,7 @@ padding-bottom: 5px</string>
                    </font>
                   </property>
                   <property name="text">
-                   <string>ingame3</string>
+                   <string>groupName</string>
                   </property>
                  </widget>
                 </item>
@@ -481,15 +481,26 @@ padding-bottom: 5px</string>
               <widget class="QWidget" name="widget_26" native="true">
                <layout class="QHBoxLayout" name="horizontalLayout_17">
                 <item>
-                 <widget class="QLabel" name="label_17">
+                 <widget class="QPushButton" name="pushButton_9">
+                  <property name="maximumSize">
+                   <size>
+                    <width>100</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
                   <property name="font">
                    <font>
                     <family>Poor Richard</family>
-                    <pointsize>14</pointsize>
+                    <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="styleSheet">
+                   <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+                  </property>
                   <property name="text">
-                   <string>TextLabel</string>
+                   <string>join</string>
                   </property>
                  </widget>
                 </item>
