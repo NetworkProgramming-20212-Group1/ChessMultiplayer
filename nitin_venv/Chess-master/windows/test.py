@@ -7,10 +7,10 @@ from navbar import Navbar
 class RegisterLogin(QDialog):
     def __init__(self):
         super(RegisterLogin,self).__init__()
-        loadUi("login_Register.ui",self)
+        loadUi("wui/login_Register.ui",self)
         self.registerButton.clicked.connect(self.checkRegister)
         self.loginButton.clicked.connect(self.checkLogin)
-
+        
     def checkRegister(self):
         reg_username = self.input_reg_username.text()
         reg_pw = self.input_reg_pw.text()
@@ -44,13 +44,13 @@ class RegisterLogin(QDialog):
     def gotoHome(self):
         home=Home()
         widget.addWidget(home)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Home(QDialog):
     def __init__(self):
         super(Home,self).__init__()
-        loadUi("home.ui",self)
+        loadUi("wui/home.ui",self)
         Navbar.handler(self)
 
     def gotoProfile(self):
@@ -72,20 +72,29 @@ class Home(QDialog):
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Profile(QDialog):
     def __init__(self):
         super(Profile,self).__init__()
-        loadUi("profile.ui",self)
+        loadUi("wui/profile.ui",self)
+        rank = self.getRank()
+        level = self.getLevel()
+        self.rank_inf.setText(rank)
+        self.level_inf.setText(level)
         Navbar.handler(self)
 
-    def checkRank(self):
-        pass
-    def checkLevel(self):
-        pass
-    def checkMatchHistory(self):
+    def getRank(self): 
+        # get rank from server
+        rank = "gold"
+        return rank
+    def getLevel(self):
+        # get level from server
+        level = "1"
+        return level
+    def getMatchHistory():
+        # get match history from server
         pass
     def gotoProfile(self):
         pass
@@ -104,13 +113,13 @@ class Profile(QDialog):
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Friend(QDialog):
     def __init__(self):
         super(Friend,self).__init__()
-        loadUi("friends.ui",self)
+        loadUi("wui/friends.ui",self)
         Navbar.handler(self)
 
     def gotoProfile(self):
@@ -130,13 +139,13 @@ class Friend(QDialog):
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)            
 
 class Group(QDialog):
     def __init__(self):
         super(Group,self).__init__()
-        loadUi("group_Joined.ui",self)
+        loadUi("wui/group_Joined.ui",self)
         Navbar.handler(self)
 
     def gotoProfile(self):
@@ -156,13 +165,13 @@ class Group(QDialog):
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Play(QDialog):
     def __init__(self):
         super(Play,self).__init__()
-        loadUi("play.ui",self)
+        loadUi("wui/play.ui",self)
         Navbar.handler(self)
 
     def gotoProfile(self):
@@ -182,7 +191,7 @@ class Play(QDialog):
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
-        print(widget.currentIndex())
+        # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
 
 app=QApplication(sys.argv)
