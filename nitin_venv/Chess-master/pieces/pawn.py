@@ -7,6 +7,9 @@ class Pawn(Piece):
         self.name = color + '_' + 'P'
         self.count = 0
 
+    def getName(self):
+        return self.name
+
     def getLegalMoves(self, board):
         LegalMovesListNull = []
         LegalMovesListDestroyable = []

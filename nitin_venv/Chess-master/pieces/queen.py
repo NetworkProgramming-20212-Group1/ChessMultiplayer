@@ -8,6 +8,9 @@ class Queen(Piece):
         Piece.__init__(self, color)
         self.name = color + '_' + 'Q'
 
+    def getName(self):
+        return self.name
+
     def getLegalMoves(self, board):
         rookQ = Rook(self.color)
         rookQ.position = self.position

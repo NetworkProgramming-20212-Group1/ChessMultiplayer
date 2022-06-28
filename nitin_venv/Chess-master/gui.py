@@ -1,3 +1,5 @@
+from tkinter import Button
+from turtle import pos
 from PyQt5 import QtCore, QtGui, QtTest, QtWidgets
 from ui_chessboard import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -75,37 +77,42 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.createGridColor()
         self.createIcons()
 
+
+
     def action(self, button):
         self.printText("")
         position = ButtonToPosition(button)
-        if self.selected is None:
-            if self.board.hasPiece(position):
-                if self.board.board[position[0]][position[1]].color == self.currentColor:
-                    if self.board.isCheck(self.currentColor):
+        if self.selected is None:   #nếu chọn được vị trí trên bàn cờ
+            if self.board.hasPiece(position):   #check xem có quân cờ ở position ko
+                if self.board.board[position[0]][position[1]].color == self.currentColor:   #check xem vị trí có quân cờ đấy có đúng màu của mình không
+                    if self.board.isCheck(self.currentColor):   #check xem có vua bên nào bị chiếu không
                         if self.currentColor == 'W':
                             self.printText("White king is in check!")
                         else:
                             self.printText("Black king is in check!")
+                    #nếu không bị chiếu thì quân cờ đi bình thường
                     self.selected = button
                     LegalMovesList = self.board.board[position[0]][position[1]].getLegalMoves(self.board.board)
-                    for LegalNull in LegalMovesList[0]:
+                    for LegalNull in LegalMovesList[0]:    #kiểm tra quân cờ được đi nước nào
                         self.selectable.append(PositionToButton(LegalNull.position))
-                    for LegalDestroyable in LegalMovesList[1]:
+                    for LegalDestroyable in LegalMovesList[1]:    #kiểm tra quân cờ ăn được quân cờ nào
                         self.destroyable.append(PositionToButton(LegalDestroyable.position))
-                else:
+                else:   #nếu quân cờ không đúng màu của mình
                     self.printText("Not your turn!")
-        else:
-            if button != self.selected:
-                if button.objectName() in self.selectable or button.objectName() in self.destroyable:
-                    self.movingAnimation(self.selected, button)
-                    self.board.move(ButtonToPosition(self.selected), position)
-                    if self.board.isCheck(self.currentColor):
+        else:   # nếu đã chọn quân cờ
+            if button != self.selected:    # nếu không click vào vị trí của quân cờ
+                if button.objectName() in self.selectable or button.objectName() in self.destroyable:   #nếu nước đi của quân cờ này di chuyển được hoặc ăn được quân cờ khác
+                    self.movingAnimation(self.selected, button)    #animation di chuyển
+                    self.board.move(ButtonToPosition(self.selected), position)  #di chuyển quân cờ được chọn tới position
+                    print(6)
+                    if self.board.isCheck(self.currentColor):   #kiểm tra xem màu hiện tại có bị chiếu tướng hết cờ không
                         self.printText("Checkmate! New game?")
                         self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
                         self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
-                    self.switchColor()
-                else:
+                    self.switchColor()  #đổi màu 
+                else:   #nước đi này không khả dĩ
                     self.printText("Can't move at this position!")
+            # nếu click phải vị trí quân cờ thì unselect và quay về trạng thái chưa chọn quân cờ nào.
             self.selected = None
             self.selectable = []
             self.destroyable = []
@@ -119,12 +126,21 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             self.currentColor = 'B'
 
     def movingAnimation(self, button1, button2):
+        alphabet = 'ABCDEFGH'
+        algebraicNotation=""
         fluidity = 20
         position = ButtonToPosition(button1)
         self.moving.setGeometry(QtCore.QRect(button1.x(), button1.y(), 90, 90))
         icon = QtGui.QIcon()
         button1.setIcon(icon)
         piece = self.board.board[position[0]][position[1]]
+        #algebraicNotation
+        algebraicNotation += self.board.whatPiece(position).getName()[2]    #get piece name
+        algebraicNotation += str(position[0]+1) + str(alphabet[position[1]])    #get prex prey
+        position = ButtonToPosition(button2)
+        algebraicNotation += str(position[0]+1) + str(alphabet[position[1]])    #get postx posty
+        print(algebraicNotation)
+
         self.moving.setIcon(self.convertToImage(piece))
         incX = (button2.x() - button1.x()) / fluidity
         incY = (button2.y() - button1.y()) / fluidity
@@ -135,27 +151,27 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 newX += incX
                 newY += incY
                 self.moving.setGeometry(QtCore.QRect(newX, newY, 90, 90))
-                QtTest.QTest.qWait(25)
+                QtTest.QTest.qWait(10)
         else:
             """Moving 2 tiles abroad first, then 1 tile only for the Knight."""
             if abs(button2.x() - button1.x()) == 180:
                 for _ in range(fluidity):
                     newX += incX
                     self.moving.setGeometry(QtCore.QRect(newX, newY, 90, 90))
-                    QtTest.QTest.qWait(25)
+                    QtTest.QTest.qWait(10)
                 for _ in range(fluidity):
                     newY += incY
                     self.moving.setGeometry(QtCore.QRect(newX, newY, 90, 90))
-                    QtTest.QTest.qWait(25)
+                    QtTest.QTest.qWait(10)
             else:
                 for _ in range(fluidity):
                     newY += incY
                     self.moving.setGeometry(QtCore.QRect(newX, newY, 90, 90))
-                    QtTest.QTest.qWait(25)
+                    QtTest.QTest.qWait(10)
                 for _ in range(fluidity):
                     newX += incX
                     self.moving.setGeometry(QtCore.QRect(newX, newY, 90, 90))
-                    QtTest.QTest.qWait(25)
+                    QtTest.QTest.qWait(10)
         self.moving.setGeometry(QtCore.QRect(-100, -100, 90, 90))
         self.moving.setIcon(icon)
 

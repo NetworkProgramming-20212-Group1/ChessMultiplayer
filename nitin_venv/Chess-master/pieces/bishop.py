@@ -6,6 +6,9 @@ class Bishop(Piece):
         Piece.__init__(self, color)
         self.name = color + '_' + 'B'
 
+    def getName(self):
+        return self.name
+
     def getLegalMoves(self, board):
         LegalMovesListNull = []
         LegalMovesListDestroyable = []

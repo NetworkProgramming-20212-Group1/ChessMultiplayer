@@ -152,6 +152,9 @@ class Board:
     def hasPiece(self, position):
         return not self.board[position[0]][position[1]].isNull()
 
+    def whatPiece(self, position):
+        return self.board[position[0]][position[1]]
+
     def isCheck(self, color):
         king = None
         otherColorLegalMoves = []

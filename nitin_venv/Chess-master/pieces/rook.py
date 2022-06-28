@@ -5,6 +5,10 @@ class Rook(Piece):
     def __init__(self, color):
         Piece.__init__(self, color)
         self.name = color + '_' + 'R'
+        
+
+    def getName(self):
+        return self.name
 
     def getLegalMoves(self, board):
         LegalMovesListNull = []

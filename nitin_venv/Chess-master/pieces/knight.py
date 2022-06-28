@@ -6,6 +6,9 @@ class Knight(Piece):
         Piece.__init__(self, color)
         self.name = color + '_' + 'N'
 
+    def getName(self):
+        return self.name
+
     def getLegalMoves(self, board):
         LegalMovesListNull = []
         LegalMovesListDestroyable = []
