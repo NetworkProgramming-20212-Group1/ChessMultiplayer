@@ -1,6 +1,6 @@
 import sys
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication
+from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow, QStackedWidget
 from PyQt5.uic import loadUi
 from navbar import Navbar
 
@@ -10,7 +10,7 @@ class RegisterLogin(QDialog):
         loadUi("wui/login_Register.ui",self)
         self.registerButton.clicked.connect(self.checkRegister)
         self.loginButton.clicked.connect(self.checkLogin)
-        
+    
     def checkRegister(self):
         reg_username = self.input_reg_username.text()
         reg_pw = self.input_reg_pw.text()
@@ -40,40 +40,12 @@ class RegisterLogin(QDialog):
 
     def gotoLogin(self):
         self.input_log_username.setFocus(True)
-
     def gotoHome(self):
-        home=Home()
-        widget.addWidget(home)
-        # print(widget.currentIndex())
-        widget.setCurrentIndex(widget.currentIndex()+1)
-
+        MainWindow.gotoHome()
 class Home(QDialog):
     def __init__(self):
         super(Home,self).__init__()
         loadUi("wui/home.ui",self)
-        Navbar.handler(self)
-
-    def gotoProfile(self):
-        profile=Profile()
-        widget.addWidget(profile)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoFriend(self):
-        friend=Friend()
-        widget.addWidget(friend)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoGroup(self):
-        group=Group()
-        widget.addWidget(group)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoPlay(self):
-        play=Play()
-        widget.addWidget(play)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoLogout(self):
-        reglog=RegisterLogin()
-        widget.addWidget(reglog)
-        # print(widget.currentIndex())
-        widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Profile(QDialog):
     def __init__(self):
@@ -83,7 +55,6 @@ class Profile(QDialog):
         level = self.getLevel()
         self.rank_inf.setText(rank)
         self.level_inf.setText(level)
-        Navbar.handler(self)
 
     def getRank(self): 
         # get rank from server
@@ -96,109 +67,73 @@ class Profile(QDialog):
     def getMatchHistory():
         # get match history from server
         pass
-    def gotoProfile(self):
-        pass
-    def gotoFriend(self):
-        friend=Friend()
-        widget.addWidget(friend)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoGroup(self):
-        group=Group()
-        widget.addWidget(group)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoPlay(self):
-        play=Play()
-        widget.addWidget(play)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoLogout(self):
-        reglog=RegisterLogin()
-        widget.addWidget(reglog)
-        # print(widget.currentIndex())
-        widget.setCurrentIndex(widget.currentIndex()+1)
 
 class Friend(QDialog):
     def __init__(self):
         super(Friend,self).__init__()
         loadUi("wui/friends.ui",self)
-        Navbar.handler(self)
-
-    def gotoProfile(self):
-        profile=Profile()
-        widget.addWidget(profile)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoFriend(self):
-        pass
-    def gotoGroup(self):
-        group=Group()
-        widget.addWidget(group)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoPlay(self):
-        play=Play()
-        widget.addWidget(play)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoLogout(self):
-        reglog=RegisterLogin()
-        widget.addWidget(reglog)
-        # print(widget.currentIndex())
-        widget.setCurrentIndex(widget.currentIndex()+1)            
-
 class Group(QDialog):
     def __init__(self):
         super(Group,self).__init__()
         loadUi("wui/group_Joined.ui",self)
-        Navbar.handler(self)
-
-    def gotoProfile(self):
-        profile=Profile()
-        widget.addWidget(profile)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoFriend(self):
-        friend=Friend()
-        widget.addWidget(friend)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoGroup(self):
-        pass
-    def gotoPlay(self):
-        play=Play()
-        widget.addWidget(play)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-    def gotoLogout(self):
-        reglog=RegisterLogin()
-        widget.addWidget(reglog)
-        # print(widget.currentIndex())
-        widget.setCurrentIndex(widget.currentIndex()+1)
-
 class Play(QDialog):
     def __init__(self):
         super(Play,self).__init__()
         loadUi("wui/play.ui",self)
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super(MainWindow, self).__init__()
+        loadUi("wui/mainwindow.ui",self)
+        self.show()
         Navbar.handler(self)
+
+    def gotoRegister(self):
+        reglog=RegisterLogin(super(MainWindow, self))
+        self.leftWidget.hide()
+        widget.addWidget(reglog)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(reglog)
+
+    def gotoHome(self):
+        home=Home()
+        widget.addWidget(home)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(home)
 
     def gotoProfile(self):
         profile=Profile()
         widget.addWidget(profile)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(profile)
+
     def gotoFriend(self):
         friend=Friend()
         widget.addWidget(friend)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(friend)
+
     def gotoGroup(self):
         group=Group()
         widget.addWidget(group)
         widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(group)
+
     def gotoPlay(self):
-        pass
+        play=Play()
+        widget.addWidget(play)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(play)
+
     def gotoLogout(self):
         reglog=RegisterLogin()
         widget.addWidget(reglog)
         # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(reglog)
+
 
 app=QApplication(sys.argv)
-mainwindow=RegisterLogin()
-widget=QtWidgets.QStackedWidget()
-widget.addWidget(mainwindow)
-widget.setMinimumSize(850, 600)
-widget.setMaximumSize(1000, 800)
-widget.show()
+mainwindow=MainWindow()
+widget =mainwindow.stackedWidget
+mainwindow.gotoRegister()
 app.exec_()
