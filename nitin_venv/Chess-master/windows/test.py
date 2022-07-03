@@ -1,9 +1,11 @@
-import sys
-from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow, QStackedWidget
+import sys, os
+sys.path.append(os.path.abspath(os.path.join('..')))
+from gui import ChessWindow
+from PyQt5.QtWidgets import QDialog, QApplication, QMainWindow
 from PyQt5.uic import loadUi
 from navbar import Navbar
 
+print("File test __name__ is set to: {}" .format(__name__))
 class RegisterLogin(QDialog):
     def __init__(self):
         super(RegisterLogin,self).__init__()
@@ -40,8 +42,10 @@ class RegisterLogin(QDialog):
 
     def gotoLogin(self):
         self.input_log_username.setFocus(True)
+
     def gotoHome(self):
-        MainWindow.gotoHome()
+        mainwindow.gotoHome()
+
 class Home(QDialog):
     def __init__(self):
         super(Home,self).__init__()
@@ -80,6 +84,39 @@ class Play(QDialog):
     def __init__(self):
         super(Play,self).__init__()
         loadUi("wui/play.ui",self)
+        self.create_pvp.clicked.connect(self.gotoPVP)
+        self.create_custom.clicked.connect(self.gotoCustom)
+
+    def gotoPVP(self):
+        pvp = PVP()
+        widget.addWidget(pvp)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(pvp)
+
+    def gotoCustom(self):
+        custom = Custom()
+        widget.addWidget(custom)
+        widget.setCurrentIndex(widget.currentIndex()+1)
+        widget.setCurrentWidget(custom)
+
+class PVP(QDialog):
+    def __init__(self):
+        super(PVP,self).__init__()
+        loadUi("wui/pvp.ui",self)
+        self.play.clicked.connect(self.gotoChessBoard)
+
+    def gotoChessBoard(self):
+        self.window = ChessWindow()
+        self.window.show()
+class Custom(QDialog):
+    def __init__(self):
+        super(Custom,self).__init__()
+        loadUi("wui/custom.ui",self)
+        self.play.clicked.connect(self.gotoChessBoard)
+
+    def gotoChessBoard(self):
+        self.window = ChessWindow()
+        self.window.show()
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -88,14 +125,17 @@ class MainWindow(QMainWindow):
         Navbar.handler(self)
 
     def gotoRegister(self):
-        reglog=RegisterLogin(super(MainWindow, self))
+        reglog=RegisterLogin()
         self.leftWidget.hide()
+        self.rightWidget.hide()
         widget.addWidget(reglog)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(reglog)
 
     def gotoHome(self):
         home=Home()
+        self.rightWidget.show()
+        self.leftWidget.show()
         widget.addWidget(home)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(home)
@@ -126,14 +166,17 @@ class MainWindow(QMainWindow):
 
     def gotoLogout(self):
         reglog=RegisterLogin()
+        self.leftWidget.hide()
+        self.rightWidget.hide()
         widget.addWidget(reglog)
         # print(widget.currentIndex())
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(reglog)
 
-
-app=QApplication(sys.argv)
-mainwindow=MainWindow()
-widget =mainwindow.stackedWidget
-mainwindow.gotoRegister()
-app.exec_()
+if __name__ == "__main__":
+    app=QApplication(sys.argv)
+    mainwindow=MainWindow()
+    widget =mainwindow.stackedWidget
+    widget.setMinimumSize(500, 375)
+    mainwindow.gotoRegister()
+    app.exec_()

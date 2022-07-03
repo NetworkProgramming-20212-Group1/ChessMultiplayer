@@ -1,5 +1,3 @@
-from tkinter import Button
-from turtle import pos
 from PyQt5 import QtCore, QtGui, QtTest, QtWidgets
 from ui_chessboard import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication
@@ -59,11 +57,10 @@ class CustomButton(QtWidgets.QPushButton):
             row.itemAt(i).widget().setText(hoverLeave + row.itemAt(i).widget().objectName()[1] + hoverEnd)
 
 
-board = Board()
+# board = Board()
 
-
-class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, board):
+class ChessWindow(QMainWindow, Ui_MainWindow):
+    def __init__(self):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
         self.board = Board()
@@ -278,10 +275,11 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.yes.clicked.connect(lambda: self.startNewGame())
         self.no.clicked.connect(lambda: sys.exit())
 
+print("File two __name__ is set to: {}" .format(__name__))
+# if __name__ == "__main__":
+app = QApplication(sys.argv)
+window = ChessWindow()
+# window.show()
+# app.exec_()
 
-if __name__ == "__main__":
-    os.system('cls')
-    app = QApplication(sys.argv)
-    window = MainWindow(board)
-    window.show()
-    sys.exit(app.exec_())
+# !!!!!!!!!!bug!!!!!!!!!!!!!
