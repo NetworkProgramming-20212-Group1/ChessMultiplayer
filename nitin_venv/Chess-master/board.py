@@ -158,17 +158,17 @@ class Board:
     def isCheck(self, color):
         king = None
         otherColorLegalMoves = []
-        for row in self.board:
-            for tile in row:
-                if not tile.isNull():
-                    if tile.name == color + '_K':
+        for row in self.board:  #các row trong bàn cờ 
+            for tile in row:    #các tile trong row đó 
+                if not tile.isNull():   #nếu ô đó có quân cờ 
+                    if tile.name == color + '_K':   #nếu ô đó có vua đúng màu
                         king = tile
-                    if color not in tile.name and self.hasPiece(tile.position):
-                        tileDestroyable = tile.getLegalMoves(self.board)[1]
-                        for legalMove in tileDestroyable:
-                            if legalMove not in otherColorLegalMoves:
-                                otherColorLegalMoves.append(legalMove)
-        if king in otherColorLegalMoves:
+                    if color not in tile.name[0] and self.hasPiece(tile.position):    #nếu có quân cờ và màu quân cờ không đúng 
+                        tileDestroyable = tile.getLegalMoves(self.board)[1]    #lấy các nước đi hợp lệ của con cờ khác màu
+                        for legalMove in tileDestroyable:    #check tất cả các nước đi hợp lệ của quân cờ đó
+                            if legalMove not in otherColorLegalMoves:    #nếu các nước đi hợp lệ đó không ở trong otherColorLegalMoves
+                                otherColorLegalMoves.append(legalMove)    #thêm các nước đi hợp lệ của quân cờ khác màu đó vào otherColorLegalMoves
+        if king in otherColorLegalMoves:    #nếu vua nằm trong otherColorLegalMoves thì vua có thể bị ăn
             return True
         else:
             return False

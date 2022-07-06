@@ -74,15 +74,36 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.createGridColor()
         self.createIcons()
 
+    def action1(self):
+        inputAlgebra = input("input your move:")
+        alphabet = 'ABCDEFGH'
+        for words in alphabet:
+            if words == inputAlgebra[2]:
+                position1 = (int(inputAlgebra[1])-1,alphabet.index(words))
+            if words == inputAlgebra[4]:
+                position2 = (int(inputAlgebra[3])-1,alphabet.index(words))
+        button1 = self.buttons[position1[1]][position1[0]]
+        print(position1)
+        button2 = self.buttons[position2[1]][position2[0]]
+        print(position2)
+        self.movingAnimation(button1,button2)
+        self.board.move(position1,position2)
+        self.switchColor()  #đổi màu 
+        self.createIcons()
+
+    
+
+
 
 
     def action(self, button):
         self.printText("")
         position = ButtonToPosition(button)
+        previousColour = self.otherColor()
         if self.selected is None:   #nếu chọn được vị trí trên bàn cờ
             if self.board.hasPiece(position):   #check xem có quân cờ ở position ko
                 if self.board.board[position[0]][position[1]].color == self.currentColor:   #check xem vị trí có quân cờ đấy có đúng màu của mình không
-                    if self.board.isCheck(self.currentColor):   #check xem có vua bên nào bị chiếu không
+                    if self.board.isCheck(self.currentColor):   #check xem có vua của màu hiện tại có bị chiếu không
                         if self.currentColor == 'W':
                             self.printText("White king is in check!")
                         else:
@@ -98,15 +119,27 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
                     self.printText("Not your turn!")
         else:   # nếu đã chọn quân cờ
             if button != self.selected:    # nếu không click vào vị trí của quân cờ
-                if button.objectName() in self.selectable or button.objectName() in self.destroyable:   #nếu nước đi của quân cờ này di chuyển được hoặc ăn được quân cờ khác
+                if button.objectName() in self.selectable or button.objectName() in self.destroyable:   #nếu nước đi của quân cờ này di chuyển được hoặc ăn được quân cờ khác 
+                    #algebraicNotation
+                    alphabet = 'ABCDEFGH'
+                    position1 = ButtonToPosition(self.selected)
+                    algebraicNotation = self.board.whatPiece(position1).getName()[2]    #get piece name
+                    algebraicNotation += str(position1[0]+1) + str(alphabet[position1[1]])    #get prex prey
+                    position2 = ButtonToPosition(button)
+                    if(self.board.hasPiece(position2)):
+                        algebraicNotation += "x"
+                    algebraicNotation += str(position2[0]+1) + str(alphabet[position2[1]])    #get postx posty
                     self.movingAnimation(self.selected, button)    #animation di chuyển
                     self.board.move(ButtonToPosition(self.selected), position)  #di chuyển quân cờ được chọn tới position
-                    print(6)
-                    if self.board.isCheck(self.currentColor):   #kiểm tra xem màu hiện tại có bị chiếu tướng hết cờ không
+                    if (self.board.isCheck(previousColour)):
+                        algebraicNotation += "+"
+                    if self.board.isCheck(self.currentColor):   #kiểm tra xem màu hiện tại có bị chiếu tướng không
                         self.printText("Checkmate! New game?")
                         self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
                         self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
+                        algebraicNotation += "++"
                     self.switchColor()  #đổi màu 
+                    print(algebraicNotation)
                 else:   #nước đi này không khả dĩ
                     self.printText("Can't move at this position!")
             # nếu click phải vị trí quân cờ thì unselect và quay về trạng thái chưa chọn quân cờ nào.
@@ -116,6 +149,10 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.createGridColor()
         self.createIcons()
 
+    def otherColor(self):
+        if self.currentColor == 'B':
+            return 'W'
+        return 'B'
     def switchColor(self):
         if self.currentColor == 'B':
             self.currentColor = 'W'
@@ -123,20 +160,12 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
             self.currentColor = 'B'
 
     def movingAnimation(self, button1, button2):
-        alphabet = 'ABCDEFGH'
-        algebraicNotation=""
         fluidity = 20
         position = ButtonToPosition(button1)
         self.moving.setGeometry(QtCore.QRect(button1.x(), button1.y(), 90, 90))
         icon = QtGui.QIcon()
         button1.setIcon(icon)
         piece = self.board.board[position[0]][position[1]]
-        #algebraicNotation
-        algebraicNotation += self.board.whatPiece(position).getName()[2]    #get piece name
-        algebraicNotation += str(position[0]+1) + str(alphabet[position[1]])    #get prex prey
-        position = ButtonToPosition(button2)
-        algebraicNotation += str(position[0]+1) + str(alphabet[position[1]])    #get postx posty
-        print(algebraicNotation)
 
         self.moving.setIcon(self.convertToImage(piece))
         incX = (button2.x() - button1.x()) / fluidity
@@ -275,11 +304,13 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.yes.clicked.connect(lambda: self.startNewGame())
         self.no.clicked.connect(lambda: sys.exit())
 
-print("File two __name__ is set to: {}" .format(__name__))
-# if __name__ == "__main__":
-app = QApplication(sys.argv)
-window = ChessWindow()
-# window.show()
-# app.exec_()
+# print("File two __name__ is set to: {}" .format(__name__))
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = ChessWindow()
+    window.show()
+    while(True):
+        window.action1()
+    app.exec_()
 
 # !!!!!!!!!!bug!!!!!!!!!!!!!
