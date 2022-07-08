@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 from pieces.rook import Rook
 from pieces.knight import Knight
 from pieces.bishop import Bishop

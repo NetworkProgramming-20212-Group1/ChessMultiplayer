@@ -312,5 +312,3 @@ if __name__ == "__main__":
     while(True):
         window.action1()
     app.exec_()
-
-# !!!!!!!!!!bug!!!!!!!!!!!!!

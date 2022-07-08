@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>786</width>
+    <width>526</width>
     <height>742</height>
    </rect>
   </property>
@@ -258,10 +258,11 @@ padding-bottom: 5px</string>
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>214</width>
+            <width>140</width>
             <height>730</height>
            </rect>
           </property>
+          <layout class="QGridLayout" name="gridLayout_2"/>
          </widget>
         </widget>
        </item>
