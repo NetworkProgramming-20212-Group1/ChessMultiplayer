@@ -20,6 +20,7 @@ hoverEnter = "<html><head/><body><p><span style=\" font-size:24pt; font-weight:6
 hoverLeave = "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600; color:#ffffff;\">"
 hoverEnd = "</span></p></body></html>"
 
+yourColor = 'B'
 
 def ButtonToPosition(button):
     alphabet = 'ABCDEFGH'
@@ -77,21 +78,31 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
     def action1(self):
         inputAlgebra = input("input your move:")
         alphabet = 'ABCDEFGH'
-        for words in alphabet:
+        
+        for words in alphabet:    #xử lí các tình huống algebra có thể xảy ra 
             if words == inputAlgebra[2]:
                 position1 = (int(inputAlgebra[1])-1,alphabet.index(words))
-            if words == inputAlgebra[4]:
+            if 'x' == inputAlgebra[3]:
+                if words == inputAlgebra[5]:
+                    position2 = (int(inputAlgebra[4])-1,alphabet.index(words))
+            elif words == inputAlgebra[4]:
                 position2 = (int(inputAlgebra[3])-1,alphabet.index(words))
-        button1 = self.buttons[position1[1]][position1[0]]
-        print(position1)
-        button2 = self.buttons[position2[1]][position2[0]]
-        print(position2)
-        self.movingAnimation(button1,button2)
-        self.board.move(position1,position2)
-        self.switchColor()  #đổi màu 
-        self.createIcons()
 
-    
+
+        button1 = self.buttons[position1[1]][position1[0]]
+        button2 = self.buttons[position2[1]][position2[0]]
+        if (self.board.hasPiece(position1)):
+            if (self.board.board[position1[0]][position1[1]].color == self.currentColor):
+                self.movingAnimation(button1,button2)
+                self.board.move(position1,position2)
+                self.switchColor()  #đổi màu 
+                self.createIcons()
+                if self.board.isCheck(self.otherColor()):   #kiểm tra xem màu hiện tại có bị chiếu tướng không
+                    self.printText("Checkmate! New game?")
+                    self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
+                    self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
+
+
 
 
 
@@ -103,20 +114,21 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         if self.selected is None:   #nếu chọn được vị trí trên bàn cờ
             if self.board.hasPiece(position):   #check xem có quân cờ ở position ko
                 if self.board.board[position[0]][position[1]].color == self.currentColor:   #check xem vị trí có quân cờ đấy có đúng màu của mình không
-                    if self.board.isCheck(self.currentColor):   #check xem có vua của màu hiện tại có bị chiếu không
-                        if self.currentColor == 'W':
-                            self.printText("White king is in check!")
-                        else:
-                            self.printText("Black king is in check!")
-                    #nếu không bị chiếu thì quân cờ đi bình thường
-                    self.selected = button
-                    LegalMovesList = self.board.board[position[0]][position[1]].getLegalMoves(self.board.board)
-                    for LegalNull in LegalMovesList[0]:    #kiểm tra quân cờ được đi nước nào
-                        self.selectable.append(PositionToButton(LegalNull.position))
-                    for LegalDestroyable in LegalMovesList[1]:    #kiểm tra quân cờ ăn được quân cờ nào
-                        self.destroyable.append(PositionToButton(LegalDestroyable.position))
+                    if self.currentColor == yourColor:
+                        if self.board.isCheck(self.currentColor):   #check xem có vua của màu hiện tại có bị chiếu không
+                            if self.currentColor == 'W':
+                                self.printText("White king is in check!")
+                            else:
+                                self.printText("Black king is in check!")
+                        #nếu không bị chiếu thì quân cờ đi bình thường
+                        self.selected = button
+                        LegalMovesList = self.board.board[position[0]][position[1]].getLegalMoves(self.board.board)
+                        for LegalNull in LegalMovesList[0]:    #kiểm tra quân cờ được đi nước nào
+                            self.selectable.append(PositionToButton(LegalNull.position))
+                        for LegalDestroyable in LegalMovesList[1]:    #kiểm tra quân cờ ăn được quân cờ nào
+                            self.destroyable.append(PositionToButton(LegalDestroyable.position))
                 else:   #nếu quân cờ không đúng màu của mình
-                    self.printText("Not your turn!")
+                        self.printText("Not your turn!")
         else:   # nếu đã chọn quân cờ
             if button != self.selected:    # nếu không click vào vị trí của quân cờ
                 if button.objectName() in self.selectable or button.objectName() in self.destroyable:   #nếu nước đi của quân cờ này di chuyển được hoặc ăn được quân cờ khác 
