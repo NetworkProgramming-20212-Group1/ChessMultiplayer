@@ -6,26 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
-    <height>742</height>
+    <width>1059</width>
+    <height>777</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,4,2">
+   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,2,1">
     <property name="leftMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="topMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="rightMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <property name="bottomMargin">
-     <number>5</number>
+     <number>0</number>
     </property>
     <item>
      <widget class="QWidget" name="leftWidget" native="true">
@@ -43,14 +43,14 @@
         <number>0</number>
        </property>
        <item>
-        <widget class="QWidget" name="widget_3" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout">
+        <widget class="QWidget" name="widget" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QPushButton" name="profile_button">
+           <widget class="QPushButton" name="home_button">
             <property name="font">
              <font>
               <family>Poor Richard</family>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -59,7 +59,31 @@ border : 2px solid black;
 padding-bottom: 5px</string>
             </property>
             <property name="text">
-             <string>profile</string>
+             <string>Home</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </widget>
+       </item>
+       <item>
+        <widget class="QWidget" name="widget_3" native="true">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QPushButton" name="profile_button">
+            <property name="font">
+             <font>
+              <family>Poor Richard</family>
+              <pointsize>18</pointsize>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+            </property>
+            <property name="text">
+             <string>Profile</string>
             </property>
            </widget>
           </item>
@@ -74,7 +98,7 @@ padding-bottom: 5px</string>
             <property name="font">
              <font>
               <family>Poor Richard</family>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -83,7 +107,7 @@ border : 2px solid black;
 padding-bottom: 5px</string>
             </property>
             <property name="text">
-             <string>friends</string>
+             <string>Friends</string>
             </property>
            </widget>
           </item>
@@ -98,7 +122,7 @@ padding-bottom: 5px</string>
             <property name="font">
              <font>
               <family>Poor Richard</family>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -107,7 +131,7 @@ border : 2px solid black;
 padding-bottom: 5px</string>
             </property>
             <property name="text">
-             <string>group</string>
+             <string>Group</string>
             </property>
            </widget>
           </item>
@@ -122,7 +146,7 @@ padding-bottom: 5px</string>
             <property name="font">
              <font>
               <family>Poor Richard</family>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -131,7 +155,7 @@ border : 2px solid black;
 padding-bottom: 5px</string>
             </property>
             <property name="text">
-             <string>play</string>
+             <string>Play</string>
             </property>
            </widget>
           </item>
@@ -159,7 +183,7 @@ padding-bottom: 5px</string>
             <property name="font">
              <font>
               <family>Poor Richard</family>
-              <pointsize>14</pointsize>
+              <pointsize>18</pointsize>
              </font>
             </property>
             <property name="styleSheet">
@@ -181,8 +205,8 @@ padding-bottom: 5px</string>
     <item>
      <widget class="QStackedWidget" name="stackedWidget">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>0</horstretch>
+       <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+        <horstretch>2</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
       </property>
@@ -193,19 +217,28 @@ padding-bottom: 5px</string>
     </item>
     <item>
      <widget class="QWidget" name="rightWidget" native="true">
-      <property name="minimumSize">
-       <size>
-        <width>86</width>
-        <height>732</height>
-       </size>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>1</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
       <property name="font">
        <font>
         <family>Poor Richard</family>
-        <pointsize>14</pointsize>
+        <pointsize>18</pointsize>
        </font>
       </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="accessibleDescription">
+       <string extracomment=".AppleSystemUIFont,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"/>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout_8">
        <property name="spacing">
         <number>-1</number>
        </property>
@@ -224,10 +257,16 @@ padding-bottom: 5px</string>
        <item>
         <widget class="QScrollArea" name="scrollArea">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-           <horstretch>0</horstretch>
+          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+           <horstretch>1</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>Poor Richard</family>
+           <pointsize>18</pointsize>
+          </font>
          </property>
          <property name="focusPolicy">
           <enum>Qt::StrongFocus</enum>
@@ -236,33 +275,49 @@ padding-bottom: 5px</string>
           <enum>Qt::DefaultContextMenu</enum>
          </property>
          <property name="frameShape">
-          <enum>QFrame::StyledPanel</enum>
+          <enum>QFrame::NoFrame</enum>
          </property>
          <property name="frameShadow">
           <enum>QFrame::Plain</enum>
-         </property>
-         <property name="lineWidth">
-          <number>10</number>
-         </property>
-         <property name="midLineWidth">
-          <number>10</number>
          </property>
          <property name="widgetResizable">
           <bool>true</bool>
          </property>
          <property name="alignment">
-          <set>Qt::AlignCenter</set>
+          <set>Qt::AlignHCenter|Qt::AlignTop</set>
          </property>
          <widget class="QWidget" name="scrollAreaWidgetContents">
           <property name="geometry">
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>140</width>
-            <height>730</height>
+            <width>260</width>
+            <height>777</height>
            </rect>
           </property>
-          <layout class="QGridLayout" name="gridLayout_2"/>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>1</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_3"/>
+           </item>
+          </layout>
          </widget>
         </widget>
        </item>
@@ -272,6 +327,8 @@ padding-bottom: 5px</string>
    </layout>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="../resources/resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

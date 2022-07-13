@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -152,4 +151,5 @@ class Ui_MainWindow(object):
         self.text.setText(_translate("MainWindow", "<html><head/><body><p align=\"center\"><span style=\" font-size:28pt; font-weight:600; color:#ffffff;\"/></p></body></html>"))
         self.yes.setText(_translate("MainWindow", "Yes"))
         self.no.setText(_translate("MainWindow", "No"))
-import resource_rc
+
+from components import resource_rc

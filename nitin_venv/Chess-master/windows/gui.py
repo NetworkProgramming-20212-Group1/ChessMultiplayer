@@ -1,9 +1,8 @@
 from PyQt5 import QtCore, QtGui, QtTest, QtWidgets
-from ui_chessboard import Ui_MainWindow
 from PyQt5.QtWidgets import QMainWindow, QApplication
-from board import Board
+from ui_chessboard import Ui_MainWindow
+from components.board import Board
 import sys
-import os
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -34,11 +33,12 @@ def PositionToButton(position):
 
 
 class CustomButton(QtWidgets.QPushButton):
-    def __init__(self, parent):
+    def __init__(self, parent, window):
         QtWidgets.QPushButton.__init__(self, parent)
+        self.window = window
 
     def mousePressEvent(self, event):
-        window.action(self)
+        self.window.action(self)
 
     def enterEvent(self, event):
         column = self.parent().parent().columns
@@ -74,9 +74,10 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.destroyable = []
         self.createGridColor()
         self.createIcons()
+        self.action1()
 
     def action1(self):
-        inputAlgebra = input("input your move:")
+        inputAlgebra = "P7A5A"
         alphabet = 'ABCDEFGH'
         
         for words in alphabet:    #xử lí các tình huống algebra có thể xảy ra 
@@ -293,7 +294,7 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
     def initializeButtons(self):
         self.buttons = []
         for _ in range(8):
-            row = [CustomButton(self.centralwidget) for _ in range(8)]
+            row = [CustomButton(self.centralwidget, self) for _ in range(8)]
             self.buttons.append(row)
         new_x = 60
         i = 0
@@ -316,11 +317,9 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.yes.clicked.connect(lambda: self.startNewGame())
         self.no.clicked.connect(lambda: sys.exit())
 
-# print("File two __name__ is set to: {}" .format(__name__))
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = ChessWindow()
     window.show()
     while(True):
         window.action1()
-    app.exec_()

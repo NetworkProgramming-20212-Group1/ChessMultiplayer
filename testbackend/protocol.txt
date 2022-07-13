@@ -1,0 +1,102 @@
+*********************REGISTER***********************
+REGT {"username": "tuan", "password": "123", "ingame": "tuan"}
+REGT {"username": "phananh", "password": "123", "ingame": "phananh"}
+REPL REGT 200 OK
+
+Error:
+REPL REGT 406 {"message":"User name exist"}
+
+*********************LOGIN**************************
+LOGN {"username": "tuan", "password": "123"}
+LOGN {"username": "phananh", "password": "123"}
+REPL LOGN 200 {"id":1,"username":"tuan","password":"123","inGame":"tuan"}
+
+Error:
+Wrong password or username: REPL LOGN 406 {"message":"Bad Credential"}
+
+
+
+*********************LOGOUT**************************
+LOUT {"ingame": "tuan"}
+LOUT {"ingame": "phananh"}
+
+REPL LOUT 200 OK
+
+Error:
+Wrong ingame: REPL UNDF 400 {"message":"Wrong user session"}
+
+*********************FRIEND**************************
+FRND {"ingame": "tuan"}
+REPL FRND 200 [{"isOnline":true,"ingame":"phananh"}]
+REPL FRND 200 [{"isOnline":false,"ingame":"phananh"}]
+
+*********************ADD FRIEND**************************
+ADFR {"ingame": "tuan"} // ingame cua nguoi muon add
+
+tuan: FRRQ {"ingame":"phananh"}
+phananh: REPL ADFR 200 OK
+
+Error:
+REPL UNDF 400 {"message":"Must login first"}
+REPL ADFR 422 {"message":"User is not online"}
+
+*********************ACCEPT FRIEND**************************
+ACFR {"ingame": "phananh"} // ingame cua nguoi gui loi moi ket ban
+
+REPL ACFR 200 OK
+
+*********************CREATE ROOM**************************
+CRRM {"id": "123", "password": "123", "type": "CUSTOM"}
+CRRM {"id": "123", "type": "CUSTOM"}
+REPL CRRM 200 {"id":"123","white":"tuan","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+CRRM {"id": "123", "password": "123", "type": "PvP"}
+
+*********************GET ALL ROOM**************************
+ROOM
+REPL ROOM 200 [{"roomid":"123","isPassword":true,"total":1,"maximum":2}]
+
+*********************JOIN ROOM**************************
+phananh: JNRM {"roomid": "123", "password": "123"}
+phananh: REPL JNRM 200 {"id":"123","white":"tuan","black":"phananh","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+tuan: JOIN {"ingame":"phananh"} // tuan la chu phong
+
+Error:
+REPL UNDF 400 {"message":"Room not exist"} // join vao  phong khong ton tai
+REPL UNDF 400 {"message":"Room is full"} // join vao phong day nguoi
+
+*********************LEAVE ROOM**************************
+phananh: LVRM {"roomid": "123"}
+phananh: REPL LVRM 200 OK
+tuan: OLVR {"isWhiteOwner":true}
+
+tuan: LVRM {"roomid": "123"}
+tuan: REPL LVRM 200 OK
+phananh: OLVR {"isWhiteOwner":false}
+
+tuan: JNRM {"roomid": "123", "password": "123"} // tuan join lai
+tuan: REPL JNRM 200 {"id":"123","white":"tuan","black":"phananh","isWhiteOwner":false,"password":"123","type":"CUSTOM"}
+phananh: JOIN {"ingame":"tuan"}
+
+*********************PLAY**************************
+tuan: PLAY {"roomid": "123"}
+tuan: REPL PLAY 200 {"match":{"id":5,"white":"tuan","black":"phananh","state":"","type":"CUSTOM"},"isWhiteTurn":true}
+phananh: STRT {"match":{"id":5,"white":"tuan","black":"phananh","state":"","type":"CUSTOM"},"isWhiteTurn":true}
+
+*********************MOVE**************************
+tuan: MOVE {"matchid": "5", "move": "P7A5A"}
+tuan: REPL MOVE 200 {"move":"P7A5A","game_state":"P7A5A "}
+phananh: OPMV {"move":"P7A5A","game_state":"P7A5A "}
+
+phananh: MOVE {"matchid": "5", "move": "P7A5A"}
+phananh: REPL MOVE 200 {"move":"P7A5A","game_state":"P7A5A P7A5A "}
+tuan: OPMV {"move":"P7A5A","game_state":"P7A5A P7A5A "}
+
+// ++ chieu tuong het co
+tuan: MOVE {"matchid": "5", "move": "PA++"}
+tuan: REPL MOVE 200 {"move":"PA++","game_state":"P7A5A P7A5A PA++ "}
+phananh: OPMV {"move":"PA++","game_state":"P7A5A P7A5A PA++ "}
+
+
+Error:
+REPL UNDF 400 {"message":"Not your turn"} // neu di 2 luot lien tiep
+
