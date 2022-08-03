@@ -29,7 +29,7 @@
             </font>
            </property>
            <property name="text">
-            <string>ingame1</string>
+            <string/>
            </property>
            <property name="alignment">
             <set>Qt::AlignCenter</set>
@@ -71,6 +71,9 @@
              <family>Poor Richard</family>
              <pointsize>14</pointsize>
             </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
            </property>
            <property name="styleSheet">
             <string notr="true">border-radius : 100; 

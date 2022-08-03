@@ -185,6 +185,9 @@
              <pointsize>20</pointsize>
             </font>
            </property>
+           <property name="cursor">
+            <cursorShape>ForbiddenCursor</cursorShape>
+           </property>
            <property name="styleSheet">
             <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -279,6 +282,9 @@ padding-bottom: 7px</string>
              <family>Poor Richard</family>
              <pointsize>20</pointsize>
             </font>
+           </property>
+           <property name="cursor">
+            <cursorShape>OpenHandCursor</cursorShape>
            </property>
            <property name="styleSheet">
             <string notr="true">border-radius : 100; 

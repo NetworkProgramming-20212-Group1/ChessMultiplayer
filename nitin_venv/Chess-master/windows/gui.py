@@ -1,8 +1,11 @@
 from PyQt5 import QtCore, QtGui, QtTest, QtWidgets
-from PyQt5.QtWidgets import QMainWindow, QApplication
+from PyQt5.QtWidgets import QMainWindow, QApplication, QMessageBox
 from ui_chessboard import Ui_MainWindow
 from components.board import Board
+from response import *
+from request import *
 import sys
+import threading
 
 if hasattr(QtCore.Qt, 'AA_EnableHighDpiScaling'):
     QApplication.setAttribute(QtCore.Qt.AA_EnableHighDpiScaling, True)
@@ -19,7 +22,6 @@ hoverEnter = "<html><head/><body><p><span style=\" font-size:24pt; font-weight:6
 hoverLeave = "<html><head/><body><p><span style=\" font-size:20pt; font-weight:600; color:#ffffff;\">"
 hoverEnd = "</span></p></body></html>"
 
-yourColor = 'B'
 
 def ButtonToPosition(button):
     alphabet = 'ABCDEFGH'
@@ -61,9 +63,11 @@ class CustomButton(QtWidgets.QPushButton):
 # board = Board()
 
 class ChessWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self):
+    def __init__(self, mainwindow, id, color):
         QMainWindow.__init__(self)
         Ui_MainWindow.__init__(self)
+        self.mainwindow = mainwindow
+        self.id = id
         self.board = Board()
         self.setupUi(self)
         self.setWindowTitle("Chess")
@@ -74,39 +78,50 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.destroyable = []
         self.createGridColor()
         self.createIcons()
-        self.action1()
+        self.yourColor = color
+
+        try:
+            t1 = threading.Thread(target=self.action1, args=(), daemon=True)
+            t1.start()
+        except:
+            print ("create thread error")
+
 
     def action1(self):
-        inputAlgebra = "P7A5A"
-        alphabet = 'ABCDEFGH'
-        
-        for words in alphabet:    #xử lí các tình huống algebra có thể xảy ra 
-            if words == inputAlgebra[2]:
-                position1 = (int(inputAlgebra[1])-1,alphabet.index(words))
-            if 'x' == inputAlgebra[3]:
-                if words == inputAlgebra[5]:
-                    position2 = (int(inputAlgebra[4])-1,alphabet.index(words))
-            elif words == inputAlgebra[4]:
-                position2 = (int(inputAlgebra[3])-1,alphabet.index(words))
+        while True:
+            opponentMoveResponseObject: ActiveResponse = self.mainwindow.getActiveResponse("OPMV");
+            if opponentMoveResponseObject:
+                moveResponse = json.loads(opponentMoveResponseObject.data)    
+                inputAlgebra = moveResponse["move"]
+
+                alphabet = 'ABCDEFGH'
+                
+                for words in alphabet:    #xử lí các tình huống algebra có thể xảy ra 
+                    if words == inputAlgebra[2]:
+                        position1 = (int(inputAlgebra[1])-1,alphabet.index(words))
+                    if 'x' == inputAlgebra[3]:
+                        if words == inputAlgebra[5]:
+                            position2 = (int(inputAlgebra[4])-1,alphabet.index(words))
+                    elif words == inputAlgebra[4]:
+                        position2 = (int(inputAlgebra[3])-1,alphabet.index(words))
 
 
-        button1 = self.buttons[position1[1]][position1[0]]
-        button2 = self.buttons[position2[1]][position2[0]]
-        if (self.board.hasPiece(position1)):
-            if (self.board.board[position1[0]][position1[1]].color == self.currentColor):
-                self.movingAnimation(button1,button2)
-                self.board.move(position1,position2)
-                self.switchColor()  #đổi màu 
-                self.createIcons()
-                if self.board.isCheck(self.otherColor()):   #kiểm tra xem màu hiện tại có bị chiếu tướng không
-                    self.printText("Checkmate! New game?")
-                    self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
+                button1 = self.buttons[position1[1]][position1[0]]
+                button2 = self.buttons[position2[1]][position2[0]]
+                if (self.board.hasPiece(position1)):
+                    if (self.board.board[position1[0]][position1[1]].color == self.currentColor):
+                        self.movingAnimation(button1,button2)
+                        self.board.move(position1,position2)
+                        self.switchColor()  #đổi màu 
+                        self.createIcons()
+
+                # TO DO: lay reply cua move -> if move ++ -> show notification: "You lose!" -> click ok -> close window, check database xem co luu match khong
+                if "++" in inputAlgebra:
+                    self.printText("You lose! Continue?")
+                    self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))                    
                     self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
-
-
-
-
-
+                    # self.no.clicked.connect(self.closeThread)
+                    
 
     def action(self, button):
         self.printText("")
@@ -115,7 +130,7 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         if self.selected is None:   #nếu chọn được vị trí trên bàn cờ
             if self.board.hasPiece(position):   #check xem có quân cờ ở position ko
                 if self.board.board[position[0]][position[1]].color == self.currentColor:   #check xem vị trí có quân cờ đấy có đúng màu của mình không
-                    if self.currentColor == yourColor:
+                    if self.currentColor == self.yourColor:
                         if self.board.isCheck(self.currentColor):   #check xem có vua của màu hiện tại có bị chiếu không
                             if self.currentColor == 'W':
                                 self.printText("White king is in check!")
@@ -147,12 +162,25 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
                     if (self.board.isCheck(previousColour)):
                         algebraicNotation += "+"
                     if self.board.isCheck(self.currentColor):   #kiểm tra xem màu hiện tại có bị chiếu tướng không
-                        self.printText("Checkmate! New game?")
-                        self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
-                        self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
                         algebraicNotation += "++"
                     self.switchColor()  #đổi màu 
                     print(algebraicNotation)
+                    matchid = self.id
+                    createMoveObject = CreateMoveObject(matchid, algebraicNotation)
+                    self.mainwindow.sendRequest(createRequest("MOVE",createMoveObject))
+
+                    moveResponse: NormalResponse = self.mainwindow.getResponse("MOVE")
+                    if moveResponse:
+                        if(moveResponse.code < 400):
+                            responseObject = json.loads(moveResponse.data)
+                            move = responseObject["move"]
+                            if "++" in move:
+                                self.printText("You win! Continue?")
+                                self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
+                                self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
+                                # self.no.clicked.connect(self.closeChessWindow)
+                    # TO DO: get reply
+                    # TO DO: if move has ++ -> show notification: You win! -> click ok -> close window
                 else:   #nước đi này không khả dĩ
                     self.printText("Can't move at this position!")
             # nếu click phải vị trí quân cờ thì unselect và quay về trạng thái chưa chọn quân cờ nào.
@@ -162,6 +190,10 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.createGridColor()
         self.createIcons()
 
+    # def closeChessWindow(self):
+    #     # threading.currentThread.exit()
+    #     self.close()
+        
     def otherColor(self):
         if self.currentColor == 'B':
             return 'W'
@@ -315,11 +347,5 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
             i += 1
         self.moving.raise_()
         self.yes.clicked.connect(lambda: self.startNewGame())
-        self.no.clicked.connect(lambda: sys.exit())
+        self.no.clicked.connect(lambda: self.close())
 
-if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    window = ChessWindow()
-    window.show()
-    while(True):
-        window.action1()

@@ -11,6 +11,9 @@ class NormalResponse:
         self.type = type
         self.data = data
 
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)
+
 class ActiveResponse:
     type: string
     data: string
@@ -18,3 +21,6 @@ class ActiveResponse:
     def __init__(self,type,data):
         self.type = type
         self.data = data
+
+    def __str__(self):
+        return str(self.__class__) + ": " + str(self.__dict__)

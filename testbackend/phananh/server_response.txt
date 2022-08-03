@@ -1,3 +1,2 @@
-[18:50:03]: REPL LOGN 200 {"id":5,"username":"phananh","password":"123","inGame":"phananh"}
-[18:50:15]: REPL LOGN 200 {"id":5,"username":"phananh","password":"123","inGame":"phananh"}
-[18:50:45]: REPL CRRM 200 {"id":"123","white":"phananh","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+[16:41:07]: REPL LOGN 200 {"id":5,"username":"phananh","password":"123","inGame":"phananh"}
+[16:43:02]: REPL ADFR 200 OK

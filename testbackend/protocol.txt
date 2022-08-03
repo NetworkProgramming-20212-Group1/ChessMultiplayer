@@ -33,8 +33,8 @@ REPL FRND 200 [{"isOnline":false,"ingame":"phananh"}]
 *********************ADD FRIEND**************************
 ADFR {"ingame": "tuan"} // ingame cua nguoi muon add
 
-tuan: FRRQ {"ingame":"phananh"}
 phananh: REPL ADFR 200 OK
+tuan: FRRQ {"ingame":"phananh"}
 
 Error:
 REPL UNDF 400 {"message":"Must login first"}

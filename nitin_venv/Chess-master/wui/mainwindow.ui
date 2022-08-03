@@ -6,15 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1059</width>
-    <height>777</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,2,1">
+   <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="1,2,0">
     <property name="leftMargin">
      <number>0</number>
     </property>
@@ -53,6 +53,9 @@
               <pointsize>18</pointsize>
              </font>
             </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -76,6 +79,9 @@ padding-bottom: 5px</string>
               <family>Poor Richard</family>
               <pointsize>18</pointsize>
              </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
@@ -101,6 +107,9 @@ padding-bottom: 5px</string>
               <pointsize>18</pointsize>
              </font>
             </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -125,6 +134,9 @@ padding-bottom: 5px</string>
               <pointsize>18</pointsize>
              </font>
             </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -148,6 +160,9 @@ padding-bottom: 5px</string>
               <family>Poor Richard</family>
               <pointsize>18</pointsize>
              </font>
+            </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
             </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
@@ -186,6 +201,9 @@ padding-bottom: 5px</string>
               <pointsize>18</pointsize>
              </font>
             </property>
+            <property name="cursor">
+             <cursorShape>OpenHandCursor</cursorShape>
+            </property>
             <property name="styleSheet">
              <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -216,7 +234,7 @@ padding-bottom: 5px</string>
      </widget>
     </item>
     <item>
-     <widget class="QWidget" name="rightWidget" native="true">
+     <widget class="QScrollArea" name="scrollArea">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
         <horstretch>1</horstretch>
@@ -230,98 +248,62 @@ padding-bottom: 5px</string>
        </font>
       </property>
       <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
+       <enum>Qt::StrongFocus</enum>
       </property>
-      <property name="accessibleDescription">
-       <string extracomment=".AppleSystemUIFont,13,-1,5,400,0,0,0,0,0,0,0,0,0,0,1"/>
+      <property name="contextMenuPolicy">
+       <enum>Qt::DefaultContextMenu</enum>
       </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
+      <property name="frameShape">
+       <enum>QFrame::NoFrame</enum>
       </property>
-      <layout class="QHBoxLayout" name="horizontalLayout_8">
-       <property name="spacing">
-        <number>-1</number>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="verticalScrollBarPolicy">
+       <enum>Qt::ScrollBarAlwaysOn</enum>
+      </property>
+      <property name="sizeAdjustPolicy">
+       <enum>QAbstractScrollArea::AdjustToContents</enum>
+      </property>
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignHCenter|Qt::AlignTop</set>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>180</width>
+         <height>600</height>
+        </rect>
        </property>
-       <property name="leftMargin">
-        <number>0</number>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+         <horstretch>1</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <widget class="QScrollArea" name="scrollArea">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-           <horstretch>1</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="font">
-          <font>
-           <family>Poor Richard</family>
-           <pointsize>18</pointsize>
-          </font>
-         </property>
-         <property name="focusPolicy">
-          <enum>Qt::StrongFocus</enum>
-         </property>
-         <property name="contextMenuPolicy">
-          <enum>Qt::DefaultContextMenu</enum>
-         </property>
-         <property name="frameShape">
-          <enum>QFrame::NoFrame</enum>
-         </property>
-         <property name="frameShadow">
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="widgetResizable">
-          <bool>true</bool>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignHCenter|Qt::AlignTop</set>
-         </property>
-         <widget class="QWidget" name="scrollAreaWidgetContents">
-          <property name="geometry">
-           <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>260</width>
-            <height>777</height>
-           </rect>
-          </property>
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-            <horstretch>1</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <layout class="QHBoxLayout" name="horizontalLayout_7">
-           <property name="leftMargin">
-            <number>0</number>
-           </property>
-           <property name="topMargin">
-            <number>0</number>
-           </property>
-           <property name="rightMargin">
-            <number>0</number>
-           </property>
-           <property name="bottomMargin">
-            <number>0</number>
-           </property>
-           <item>
-            <layout class="QVBoxLayout" name="verticalLayout_3"/>
-           </item>
-          </layout>
-         </widget>
-        </widget>
-       </item>
-      </layout>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3"/>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>

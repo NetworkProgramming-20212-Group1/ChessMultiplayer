@@ -98,6 +98,9 @@
                 <pointsize>18</pointsize>
                </font>
               </property>
+              <property name="cursor">
+               <cursorShape>OpenHandCursor</cursorShape>
+              </property>
               <property name="styleSheet">
                <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -135,6 +138,9 @@ padding-bottom: 5px</string>
                    <family>Poor Richard</family>
                    <pointsize>18</pointsize>
                   </font>
+                 </property>
+                 <property name="styleSheet">
+                  <string notr="true"/>
                  </property>
                  <property name="text">
                   <string>Host</string>
@@ -202,6 +208,9 @@ padding-bottom: 5px</string>
                    <pointsize>18</pointsize>
                   </font>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>OpenHandCursor</cursorShape>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -222,10 +231,10 @@ padding-bottom: 5px</string>
           <widget class="QWidget" name="widget_16" native="true">
            <layout class="QVBoxLayout" name="verticalLayout_5">
             <item>
-             <widget class="QWidget" name="ingame2" native="true">
+             <widget class="QWidget" name="widget_8" native="true">
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <item alignment="Qt::AlignHCenter">
-                <widget class="QLabel" name="guest_ingame">
+                <widget class="QLabel" name="ingame2">
                  <property name="font">
                   <font>
                    <family>Poor Richard</family>
@@ -288,6 +297,9 @@ padding-bottom: 5px</string>
                    <pointsize>18</pointsize>
                   </font>
                  </property>
+                 <property name="cursor">
+                  <cursorShape>PointingHandCursor</cursorShape>
+                 </property>
                  <property name="styleSheet">
                   <string notr="true">border-radius : 100; 
 border : 2px solid black;
@@ -311,6 +323,9 @@ padding-bottom: 5px</string>
                    <family>Poor Richard</family>
                    <pointsize>18</pointsize>
                   </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>OpenHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border-radius : 100; 
@@ -384,6 +399,9 @@ padding-bottom: 5px</string>
                 <family>Poor Richard</family>
                 <pointsize>18</pointsize>
                </font>
+              </property>
+              <property name="cursor">
+               <cursorShape>OpenHandCursor</cursorShape>
               </property>
               <property name="styleSheet">
                <string notr="true">border-radius : 100; 

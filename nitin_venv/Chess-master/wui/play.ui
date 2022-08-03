@@ -34,7 +34,7 @@
        <height>16777215</height>
       </size>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,6">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="0,6">
       <property name="leftMargin">
        <number>0</number>
       </property>
@@ -69,25 +69,31 @@
           <number>0</number>
          </property>
          <item>
-          <widget class="QLabel" name="play">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="font">
-            <font>
-             <family>Poor Richard</family>
-             <pointsize>24</pointsize>
-            </font>
-           </property>
-           <property name="text">
-            <string>PLAY</string>
-           </property>
-           <property name="alignment">
-            <set>Qt::AlignHCenter|Qt::AlignTop</set>
-           </property>
+          <widget class="QWidget" name="widget_4" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_3">
+            <item>
+             <widget class="QLabel" name="play">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="font">
+               <font>
+                <family>Poor Richard</family>
+                <pointsize>24</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>PLAY</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignHCenter|Qt::AlignTop</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </widget>
          </item>
         </layout>
@@ -119,7 +125,7 @@
                 <height>100</height>
                </size>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_9">
+              <layout class="QVBoxLayout" name="verticalLayout_7">
                <item>
                 <widget class="QLabel" name="custom">
                  <property name="font">
@@ -136,6 +142,16 @@
                  </property>
                 </widget>
                </item>
+               <item alignment="Qt::AlignHCenter">
+                <widget class="QLabel" name="label_2">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -149,6 +165,9 @@
                    <family>Poor Richard</family>
                    <pointsize>18</pointsize>
                   </font>
+                 </property>
+                 <property name="cursor">
+                  <cursorShape>OpenHandCursor</cursorShape>
                  </property>
                  <property name="styleSheet">
                   <string notr="true">border-radius : 100; 
@@ -205,7 +224,7 @@ padding-bottom: 5px</string>
                 <height>100</height>
                </size>
               </property>
-              <layout class="QHBoxLayout" name="horizontalLayout_11">
+              <layout class="QVBoxLayout" name="verticalLayout_6">
                <item>
                 <widget class="QLabel" name="pvp">
                  <property name="font">
@@ -222,6 +241,22 @@ padding-bottom: 5px</string>
                  </property>
                 </widget>
                </item>
+               <item alignment="Qt::AlignHCenter">
+                <widget class="QLabel" name="label">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="font">
+                  <font>
+                   <family>Poor Richard</family>
+                   <pointsize>16</pointsize>
+                  </font>
+                 </property>
+                 <property name="text">
+                  <string>in development</string>
+                 </property>
+                </widget>
+               </item>
               </layout>
              </widget>
             </item>
@@ -230,6 +265,9 @@ padding-bottom: 5px</string>
               <layout class="QHBoxLayout" name="horizontalLayout_12">
                <item>
                 <widget class="QPushButton" name="create_pvp">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
                  <property name="font">
                   <font>
                    <family>Poor Richard</family>
@@ -281,7 +319,7 @@ padding-bottom: 5px</string>
                  <x>0</x>
                  <y>0</y>
                  <width>142</width>
-                 <height>283</height>
+                 <height>278</height>
                 </rect>
                </property>
                <layout class="QVBoxLayout" name="verticalLayout_2"/>

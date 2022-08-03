@@ -2,7 +2,10 @@ import string
 import json
 
 def createRequest(type:string, object):
+    if object is None:
+        return type
     return type + ' ' + json.dumps(object.__dict__)
+
 
 class LoginObject: 
     username: string
@@ -27,13 +30,28 @@ class LogoutObject:
 
     def __init__(self, ingame):
         self.ingame = ingame
+class ProfileObject:
+    ingame: string
+
+    def __init__(self, ingame):
+        self.ingame = ingame
+
+class FriendListObject:
+    ingame: string
+
+    def __init__(self, ingame):
+        self.ingame = ingame
 
 class AddFriendObject: 
     ingame: string
 
     def __init__(self, ingame):
         self.ingame = ingame
+class AcceptFriendObject:
+    ingame: string
 
+    def __init__(self, ingame):
+        self.ingame = ingame
 class CreateRoomObject:
     id: string
     password: string
@@ -55,3 +73,19 @@ class PlayObject:
 
     def __init__(self, roomid):
         self.roomid = roomid
+
+class JoinRoomObject:
+    roomid: string
+    password: string
+
+    def __init__(self, roomid, password):
+        self.roomid = roomid
+        self.password = password
+
+class CreateMoveObject:
+    matchid: string
+    move: string
+
+    def __init__(self, matchid, move):
+        self.matchid = matchid
+        self.move = move

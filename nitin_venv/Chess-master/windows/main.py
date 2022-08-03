@@ -29,7 +29,6 @@ class MainWindow(QMainWindow):
         loadUi("mainwindow.ui",self)
         self.center()
         self.show()
-        self.getNotification()
         Navbar.handler(self)
         global ingame
         host = '127.0.0.1'
@@ -43,33 +42,31 @@ class MainWindow(QMainWindow):
         qr.moveCenter(cp)
         self.move(qr.topLeft())
 
-    def getNotification(self):
-        # # get from server
-        # notification = Notification()
-        # self.verticalLayout_3.addWidget(notification)
-        # # notification.noti.setText("")
-        pass
-
     def gotoRegister(self):
         reglog=RegisterLogin(mainwindow)
         widget.removeWidget(widget.currentWidget())
         self.leftWidget.hide()
-        self.rightWidget.hide()
+        self.scrollArea.hide()
         widget.addWidget(reglog)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(reglog)
 
     def gotoHome(self):
         home=Home(self.ingame)
-        self.rightWidget.show()
+        self.scrollArea.show()
         self.leftWidget.show()
         widget.removeWidget(widget.currentWidget())
         widget.addWidget(home)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(home)
+        self.getNotification(mainwindow)
+
+    def getNotification(self, mainwindow):
+        notification = Notification(mainwindow)
+        self.verticalLayout_3.addWidget(notification)
 
     def gotoProfile(self):
-        profile=Profile()
+        profile=Profile(mainwindow)
         widget.removeWidget(widget.currentWidget())
         widget.addWidget(profile)
         widget.setCurrentIndex(widget.currentIndex()+1)
@@ -123,14 +120,16 @@ class MainWindow(QMainWindow):
         msg.setText("Logout successfully!")
         msg.exec_()
 
-    def gotoChessBoard(self):
-        self.chessWindow = ChessWindow()
+    def gotoChessBoard(self, id, color):
+        self.chessWindow = ChessWindow(mainwindow, id, color)
         self.chessWindow.show()
+        
 
     def sendRequest(self, message: string):
         if message=="close":
             self.s.close()
         message+='\n'
+        print(message)
         self.s.send(message.encode('ascii'))
 
     def getResponse(self,rtype: string) -> NormalResponse:
@@ -142,12 +141,27 @@ class MainWindow(QMainWindow):
             for x in self.normal_response:
                 if x.type == rtype:
                     self.normal_response.remove(x)
+                    print(x)        
+                    return x
+            # if more than 1s -> break;
+        return None
+
+    def getActiveResponse(self, rtype: string) -> ActiveResponse:
+        #get request from mainwindow
+        timeout = 1   # [seconds]
+        timeout_start = time.time()
+        while time.time() < timeout_start + timeout:
+            x: ActiveResponse 
+            for x in self.active_response:
+                if x.type == rtype:
+                    self.active_response.remove(x)
                     return x
             # if more than 1s -> break;
         return None
 
 def getRequest(s, normal_response, active_response):
     while True:
+        # print(normal_response)
         data: string = s.recv(1024).decode('ascii')
         begin = data[0:4]
         if begin == "REPL":

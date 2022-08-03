@@ -198,7 +198,20 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QWidget" name="widget_15" native="true">
-           <layout class="QVBoxLayout" name="verticalLayout_4">
+           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2,1">
+            <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
             <item>
              <widget class="QLabel" name="Match_history">
               <property name="font">
@@ -212,6 +225,24 @@
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="refreshButton">
+              <property name="font">
+               <font>
+                <family>Poor Richard</family>
+                <pointsize>18</pointsize>
+               </font>
+              </property>
+              <property name="styleSheet">
+               <string notr="true">border-radius : 100; 
+border : 2px solid black;
+padding-bottom: 5px</string>
+              </property>
+              <property name="text">
+               <string>Refresh</string>
               </property>
              </widget>
             </item>
@@ -232,7 +263,7 @@
               <x>0</x>
               <y>0</y>
               <width>593</width>
-              <height>320</height>
+              <height>311</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout"/>

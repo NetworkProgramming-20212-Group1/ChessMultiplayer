@@ -1,27 +1,53 @@
+import time
 from PyQt5.uic import loadUi
 from components.matchHistory import MatchHistory
-from PyQt5.QtWidgets import QWidget
+from PyQt5.QtWidgets import QWidget, QMainWindow
+from PyQt5 import QtCore
+from request import *
+from response import *
+import threading
 
 class Profile(QWidget):
-    def __init__(self):
+    socketSignal = QtCore.pyqtSignal(object)
+
+    def __init__(self, mainwindow: QMainWindow):
         super(Profile,self).__init__()
         loadUi("profile.ui",self)
-        rank = self.getRank()
-        level = self.getLevel()
-        self.rank_inf.setText(rank)
-        self.level_inf.setText(level)
-        self.getMatchHistory()
+        self.mainwindow = mainwindow
+        self.ingame = self.mainwindow.ingame
+        self.getBasicInfo()
+        self.socketSignal.connect(self.addNewWidget)
+        try:
+            t1 = threading.Thread(target=self.getMatchHistory, args=(), daemon=True)
+            t1.start()
+        except:
+            print ("create thread error")
 
-    def getRank(self): 
-        # get rank from server
-        rank = "gold"
-        return rank
-    def getLevel(self):
-        # get level from server
-        level = "1"
-        return level
-    def getMatchHistory(self):
-        for x in range(6):
-            matchHistory = MatchHistory()
-            self.verticalLayout.addWidget(matchHistory)
-            matchHistory.Match.setText("match " + f'{x + 1}')
+    def getBasicInfo(self): 
+        profileObject = ProfileObject(self.ingame)
+        self.mainwindow.sendRequest(createRequest("PROF", profileObject))
+        normalResponse: NormalResponse = self.mainwindow.getResponse("PROF")
+        if(normalResponse):
+                if(normalResponse.code < 400):
+                    responseObject = json.loads(normalResponse.data)
+                    rank = responseObject["rank"]
+                    self.rank_inf.setText(rank)
+                    level = responseObject["level"]
+                    self.level_inf.setText(level)
+                    matchHistory = responseObject["matchHistory"]
+                    for x in matchHistory:
+                        self.socketSignal.emit(x)
+        self.clearDisplay()
+        time.sleep(10)
+
+    def addNewWidget(self, x):
+        matchHistory =  MatchHistory(x)
+        self.verticalLayout.addWidget(matchHistory)
+
+    def clearDisplay(self):
+        for i in reversed(range(self.verticalLayout.count())): 
+            widgetToRemove = self.verticalLayout.itemAt(i).widget()
+            # remove it from the layout list
+            self.verticalLayout.removeWidget(widgetToRemove)
+            # remove it from the gui
+            widgetToRemove.deleteLater()

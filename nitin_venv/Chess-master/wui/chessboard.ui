@@ -259,13 +259,18 @@
     </property>
     <property name="font">
      <font>
+      <family>Poor Richard</family>
       <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <bold>false</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>OpenHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color: lime;</string>
+     <string notr="true">border-radius : 100; 
+border : 2px solid green;
+padding-bottom: 5px</string>
     </property>
     <property name="text">
      <string>Yes</string>
@@ -285,13 +290,18 @@
     </property>
     <property name="font">
      <font>
+      <family>Poor Richard</family>
       <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
+      <bold>false</bold>
      </font>
     </property>
+    <property name="cursor">
+     <cursorShape>OpenHandCursor</cursorShape>
+    </property>
     <property name="styleSheet">
-     <string notr="true">color: red;</string>
+     <string notr="true">border-radius : 100; 
+border : 2px solid red;
+padding-bottom: 5px</string>
     </property>
     <property name="text">
      <string>No</string>
@@ -303,7 +313,7 @@
   </widget>
  </widget>
  <resources>
-  <include location="resources/resource.qrc"/>
+  <include location="../resources/resource.qrc"/>
  </resources>
  <connections/>
 </ui>
