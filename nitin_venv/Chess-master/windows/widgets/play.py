@@ -61,17 +61,18 @@ class Play(QWidget):
 
 # hien thi phong co pw hay ko 
     def getRoom(self):
-        self.mainwindow.sendRequest(createRequest("ROOM", None))
-        normalResponse: NormalResponse = self.mainwindow.getResponse("ROOM")
-        if normalResponse:
-            if normalResponse.code < 400:
-                responseObject = json.loads(normalResponse.data)
-                for x in responseObject:
-                    self.socketSignal.emit(x)
-        self.clearDisplay()
-        time.sleep(3)
+        while True:
+            self.mainwindow.sendRequest(createRequest("ROOM", None))
+            normalResponse: NormalResponse = self.mainwindow.getResponse("ROOM")
+            if normalResponse:
+                if normalResponse.code < 400:
+                    responseObject = json.loads(normalResponse.data)
+                    for x in responseObject:
+                        self.socketSignal.emit(x)
+            self.clearDisplay()
+            time.sleep(3)
         
-    def addWidget(self, x):
+    def addNewWidget(self, x):
         openRoom = Room(self.mainwindow, x)
         self.verticalLayout_2.addWidget(openRoom)
 

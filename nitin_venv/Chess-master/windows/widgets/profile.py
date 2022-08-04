@@ -24,21 +24,22 @@ class Profile(QWidget):
             print ("create thread error")
 
     def getBasicInfo(self): 
-        profileObject = ProfileObject(self.ingame)
-        self.mainwindow.sendRequest(createRequest("PROF", profileObject))
-        normalResponse: NormalResponse = self.mainwindow.getResponse("PROF")
-        if(normalResponse):
-                if(normalResponse.code < 400):
-                    responseObject = json.loads(normalResponse.data)
-                    rank = responseObject["rank"]
-                    self.rank_inf.setText(rank)
-                    level = responseObject["level"]
-                    self.level_inf.setText(level)
-                    matchHistory = responseObject["matchHistory"]
-                    for x in matchHistory:
-                        self.socketSignal.emit(x)
-        self.clearDisplay()
-        time.sleep(10)
+        while True:
+            profileObject = ProfileObject(self.ingame)
+            self.mainwindow.sendRequest(createRequest("PROF", profileObject))
+            normalResponse: NormalResponse = self.mainwindow.getResponse("PROF")
+            if(normalResponse):
+                    if(normalResponse.code < 400):
+                        responseObject = json.loads(normalResponse.data)
+                        rank = responseObject["rank"]
+                        self.rank_inf.setText(rank)
+                        level = responseObject["level"]
+                        self.level_inf.setText(level)
+                        matchHistory = responseObject["matchHistory"]
+                        for x in matchHistory:
+                            self.socketSignal.emit(x)
+            self.clearDisplay()
+            time.sleep(10)
 
     def addNewWidget(self, x):
         matchHistory =  MatchHistory(x)

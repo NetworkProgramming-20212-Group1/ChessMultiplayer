@@ -61,7 +61,7 @@ class Friend(QWidget):
             time.sleep(3)
 
     def addNewWidget(self, x):
-        friendList = FriendList(x)
+        friendList = FriendList(self.mainwindow, x)
         self.verticalLayout.addWidget(friendList)
 
 

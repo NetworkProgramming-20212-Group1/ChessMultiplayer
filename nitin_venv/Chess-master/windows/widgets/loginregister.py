@@ -52,11 +52,9 @@ class RegisterLogin(QWidget):
         else:
             self.clearInf()
             self.clearInput()
-            print("Input username: " + reg_username + ", input password: " + reg_pw + ", input ingame: " + reg_ingame)
             registerObject = RegisterObject(reg_username, reg_pw, reg_ingame)
             self.mainwindow.sendRequest(createRequest("REGT",registerObject))
             normalResponse: NormalResponse = self.mainwindow.getResponse("REGT")
-            print(normalResponse.data)
             if (normalResponse.code < 400):
                 self.clearInput()
                 self.input_log_username.setFocus(True)
@@ -85,12 +83,10 @@ class RegisterLogin(QWidget):
         else:
             self.clearInf()
             self.clearInput()
-            print("Input username: " + log_username + ", input password: " + log_pw)
             loginObject = LoginObject(log_username, log_pw)
             self.mainwindow.sendRequest(createRequest("LOGN",loginObject))
             # send the information to server to check
             normalResponse: NormalResponse = self.mainwindow.getResponse("LOGN")
-            print(normalResponse.data)
             responseObject = json.loads(normalResponse.data)
             if (normalResponse.code < 400):
                 self.mainwindow.ingame = responseObject["inGame"]

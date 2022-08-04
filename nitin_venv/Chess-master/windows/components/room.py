@@ -10,6 +10,7 @@ class Room(QWidget):
         loadUi("room.ui",self)
         self.mainwindow = mainwindow
         self.x = x
+        self.eventHandler(self.x)
         self.join.clicked.connect(lambda: self.joinRoom(x))
 
     def eventHandler(self, x):
@@ -19,7 +20,7 @@ class Room(QWidget):
             self.isPassword.setText("require password")
         else:
             self.isPassword.setText("")
-            
+
     def createPasswordDialog(self):
         dialog = RoomPassword()
         dialog.exec_()
@@ -34,7 +35,7 @@ class Room(QWidget):
             joinRoomObject = JoinRoomObject(roomid, None)
         self.mainwindow.sendRequest(createRequest("JNRM",joinRoomObject))
         normalResponse: NormalResponse = self.mainwindow.getResponse("JNRM")
-        if (normalResponse.code < 400):
-            responseObject = json.loads(normalResponse.data)
-            self.mainwindow.gotoCustom(responseObject)
-
+        if(normalResponse):
+            if (normalResponse.code < 400):
+                responseObject = json.loads(normalResponse.data)
+                self.mainwindow.gotoCustom(responseObject)

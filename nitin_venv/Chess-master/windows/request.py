@@ -52,6 +52,12 @@ class AcceptFriendObject:
 
     def __init__(self, ingame):
         self.ingame = ingame
+
+class UnfriendObject:
+    ingame: string
+
+    def __init__(self, ingame):
+        self.ingame = ingame
 class CreateRoomObject:
     id: string
     password: string

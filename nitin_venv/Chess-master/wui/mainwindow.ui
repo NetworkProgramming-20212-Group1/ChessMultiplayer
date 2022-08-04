@@ -124,33 +124,6 @@ padding-bottom: 5px</string>
         </widget>
        </item>
        <item>
-        <widget class="QWidget" name="widget_5" native="true">
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="group_button">
-            <property name="font">
-             <font>
-              <family>Poor Richard</family>
-              <pointsize>18</pointsize>
-             </font>
-            </property>
-            <property name="cursor">
-             <cursorShape>OpenHandCursor</cursorShape>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-            </property>
-            <property name="text">
-             <string>Group</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
         <widget class="QWidget" name="widget_6" native="true">
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
