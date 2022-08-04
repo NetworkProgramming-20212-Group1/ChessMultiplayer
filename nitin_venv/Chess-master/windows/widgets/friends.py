@@ -60,7 +60,7 @@ class Friend(QWidget):
                     for x in responseObject:
                         self.socketSignal.emit(x)
             self.clearDisplay()
-            time.sleep(3)
+            time.sleep(20)
             currentWidgetIndex = self.mainwindow.getCurrentIndex()
             # print(currentWidgetIndex)
             if (friendWidgetIndex != currentWidgetIndex):

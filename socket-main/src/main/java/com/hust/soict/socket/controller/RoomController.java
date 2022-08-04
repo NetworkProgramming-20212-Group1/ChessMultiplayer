@@ -129,7 +129,7 @@ public class RoomController {
             if (room.getBlack().equals(clientHandler.user.getInGame())){
                 opponent = room.getWhite();
             }
-            OCHTdto ochTdto = new OCHTdto(message, opponent);
+            OCHTdto ochTdto = new OCHTdto(message, clientHandler.user.getInGame());
             ServerResponse serverResponse = new ServerResponse("OCHT", gson.toJson(ochTdto));
             PrintWriter opponentDos = SocketApplication.activeClient.get(opponent);
             opponentDos.println(serverResponse);

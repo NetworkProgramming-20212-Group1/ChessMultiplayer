@@ -128,7 +128,7 @@ class MainWindow(QMainWindow):
 
     def getResponse(self,rtype: string) -> NormalResponse:
         #get request from mainwindow
-        timeout = 1   # [seconds]
+        timeout = 0.3   # [seconds]
         timeout_start = time.time()
         while time.time() < timeout_start + timeout:
             x: NormalResponse
@@ -142,7 +142,7 @@ class MainWindow(QMainWindow):
 
     def getActiveResponse(self, rtype: string) -> ActiveResponse:
         #get request from mainwindow
-        timeout = 1   # [seconds]
+        timeout = 0.3   # [seconds]
         timeout_start = time.time()
         while time.time() < timeout_start + timeout:
             x: ActiveResponse 
@@ -156,6 +156,7 @@ class MainWindow(QMainWindow):
 def getRequest(s, normal_response, active_response):
     while True:
         # print(normal_response)
+        time.sleep(1)
         data: string = s.recv(10000).decode('ascii')
         begin = data[0:4]
         if begin == "REPL":

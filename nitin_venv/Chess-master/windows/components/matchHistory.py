@@ -16,7 +16,10 @@ class MatchHistory(QWidget):
         self.color.setText(f"white: {whiteIngame}, black: {blackIngame}")
         type = x["type"]
         self.type.setText(f"mode: {type}")
-        winnerIngame = x["winner"]
+        if "winner" in x:
+            winnerIngame = x["winner"]
+        else:
+            winnerIngame = "no winner"
         self.winner.setText(f"winner: {winnerIngame}")
         move = x["state"]
         self.move.setText(move)

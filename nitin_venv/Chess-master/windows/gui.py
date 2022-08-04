@@ -81,7 +81,7 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
         self.yourColor = color
 
         try:
-            t1 = threading.Thread(target=self.action1, args=(), daemon=True)
+            t1 = threading.Thread(target=self.action1, args=())
             t1.start()
         except:
             print ("create thread error")

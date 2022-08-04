@@ -7,6 +7,7 @@ from response import *
 from request import *
 import threading
 from threading import main_thread
+import time
 should_go_to_play = threading.Event()
 
 class Custom(QWidget):
@@ -51,6 +52,7 @@ class Custom(QWidget):
         customWidgetIndex = self.mainwindow.getCurrentIndex() + 1
         # print(playWidgetIndex)
         while True:
+            time.sleep(1)
             if self.stop:
                 break
             leaveResponseObject: ActiveResponse = self.mainwindow.getActiveResponse("OLVR");
