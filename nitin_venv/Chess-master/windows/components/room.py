@@ -5,9 +5,10 @@ from response import *
 from request import *
 
 class Room(QWidget):
-    def __init__(self, mainwindow: QMainWindow, x):
+    def __init__(self, parent, mainwindow: QMainWindow, x):
         super(Room,self).__init__()
         loadUi("room.ui",self)
+        self.parent = parent
         self.mainwindow = mainwindow
         self.x = x
         self.eventHandler(self.x)
@@ -38,4 +39,5 @@ class Room(QWidget):
         if(normalResponse):
             if (normalResponse.code < 400):
                 responseObject = json.loads(normalResponse.data)
+                self.parent.closeLoop()
                 self.mainwindow.gotoCustom(responseObject)

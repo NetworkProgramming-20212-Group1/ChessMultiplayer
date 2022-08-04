@@ -21,7 +21,7 @@
        <widget class="QWidget" name="widget_28" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_28">
          <item>
-          <widget class="QLabel" name="Match">
+          <widget class="QLabel" name="matchID">
            <property name="font">
             <font>
              <family>Poor Richard</family>
@@ -29,7 +29,26 @@
             </font>
            </property>
            <property name="text">
-            <string>Match 1</string>
+            <string/>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QWidget" name="widget" native="true">
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="QLabel" name="type">
+           <property name="font">
+            <font>
+             <family>Poor Richard</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string/>
            </property>
           </widget>
          </item>
@@ -40,7 +59,7 @@
        <widget class="QWidget" name="widget_29" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_29">
          <item>
-          <widget class="QLabel" name="Duration">
+          <widget class="QLabel" name="color">
            <property name="font">
             <font>
              <family>Poor Richard</family>
@@ -48,7 +67,7 @@
             </font>
            </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -59,7 +78,7 @@
        <widget class="QWidget" name="widget_30" native="true">
         <layout class="QVBoxLayout" name="verticalLayout_6">
          <item>
-          <widget class="QLabel" name="Time">
+          <widget class="QLabel" name="move">
            <property name="font">
             <font>
              <family>Poor Richard</family>
@@ -67,7 +86,7 @@
             </font>
            </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -78,7 +97,7 @@
        <widget class="QWidget" name="widget_31" native="true">
         <layout class="QHBoxLayout" name="horizontalLayout_30">
          <item>
-          <widget class="QLabel" name="Result">
+          <widget class="QLabel" name="winner">
            <property name="font">
             <font>
              <family>Poor Richard</family>
@@ -86,7 +105,7 @@
             </font>
            </property>
            <property name="text">
-            <string>TextLabel</string>
+            <string/>
            </property>
           </widget>
          </item>

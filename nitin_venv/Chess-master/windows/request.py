@@ -88,6 +88,14 @@ class JoinRoomObject:
         self.roomid = roomid
         self.password = password
 
+class MessageObject:
+    roomid: string
+    message: string
+
+    def __init__(self, roomid, message):
+        self.roomid = roomid
+        self.message = message
+
 class CreateMoveObject:
     matchid: string
     move: string

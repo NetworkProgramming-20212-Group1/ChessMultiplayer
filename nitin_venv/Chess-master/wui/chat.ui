@@ -18,7 +18,7 @@
     <widget class="QWidget" name="widget" native="true">
      <layout class="QVBoxLayout" name="verticalLayout_2">
       <item alignment="Qt::AlignLeft|Qt::AlignVCenter">
-       <widget class="QLabel" name="message">
+       <widget class="QLabel" name="input_message">
         <property name="font">
          <font>
           <family>Poor Richard</family>

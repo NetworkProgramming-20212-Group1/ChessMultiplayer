@@ -11,6 +11,8 @@ should_go_to_play = threading.Event()
 
 class Custom(QWidget):
     socketSignal = QtCore.pyqtSignal(object) #must be defined in class level
+    socketSignal2 = QtCore.pyqtSignal(object) #must be defined in class level
+    stop = False
 
     def __init__(self, mainwindow: QMainWindow, responseObject: Dict):
         super(Custom,self).__init__()
@@ -23,11 +25,15 @@ class Custom(QWidget):
         self.inputMessage.returnPressed.connect(self.sendMessage.click)
         self.sendMessage.clicked.connect(self.getMessage)
         self.socketSignal.connect(self.getPlay)
+        self.socketSignal2.connect(self.addNewWidget)
         self.isWhiteOwner= responseObject["isWhiteOwner"]
 
         try:
-            t1 = threading.Thread(target=self.checkJoin, args=(), daemon=True)
-            t1.start()
+            self.t1 = threading.Thread(target=self.checkJoin, args=(), daemon=True)
+            self.t1.start()
+
+            self.t2 = threading.Thread(target=self.getOpponentMessage, args=(), daemon=True)
+            self.t2.start()
         except:
             print ("create thread error")
 
@@ -41,8 +47,12 @@ class Custom(QWidget):
             self.ingame1.setStyleSheet("color: green")
             self.ingame2.setStyleSheet("color: red")
 
-    def checkJoin(self ):
-        while 1:
+    def checkJoin(self):
+        customWidgetIndex = self.mainwindow.getCurrentIndex() + 1
+        # print(playWidgetIndex)
+        while True:
+            if self.stop:
+                break
             leaveResponseObject: ActiveResponse = self.mainwindow.getActiveResponse("OLVR");
             if leaveResponseObject:
                 leaveResponse = json.loads(leaveResponseObject.data)
@@ -68,6 +78,11 @@ class Custom(QWidget):
                 match = responseObject["match"]
                 id = match["id"]
                 self.socketSignal.emit({'id': id, 'match': match})
+            
+            currentWidgetIndex = self.mainwindow.getCurrentIndex()
+            # print(currentWidgetIndex)
+            if (customWidgetIndex != currentWidgetIndex):
+                break
 
     def getRoomInfo(self, responseObject: Dict):
         isWhiteOwner = responseObject["isWhiteOwner"]
@@ -115,13 +130,19 @@ class Custom(QWidget):
             msg.setText("Opponent has not joined the room")
             msg.exec_()
 
+    def closeLoop(self):
+        self.stop = True
+        self.t1.join()
+
     def leaveRoom(self, responseObject: Dict):
+        self.closeLoop()
         roomid = responseObject["id"]
         leaveRoomObject = LeaveRoomObject(roomid)
         self.mainwindow.sendRequest(createRequest("LVRM",leaveRoomObject))
         normalResponse: NormalResponse = self.mainwindow.getResponse("LVRM")
         if(normalResponse):
             if(normalResponse.code < 400):
+                self.closeLoop()
                 self.mainwindow.gotoPlay()
                 msg = QMessageBox()
                 msg.setWindowTitle("")
@@ -133,11 +154,37 @@ class Custom(QWidget):
     def getMessage(self):
         input_message = self.inputMessage.text()
         if(input_message):
-            chat = Chat()
-            area = self.scrollArea
-            vbar = area.verticalScrollBar()
-            vbar.setValue(vbar.maximum())
-            self.grid.addWidget(chat)  
-            self.inputMessage.setText("")      
-            chat.message.setText("You: " + input_message)
-        # get another client's message from server
+            messageObject = MessageObject(self.roomid, input_message)
+            self.mainwindow.sendRequest(createRequest("CHAT",messageObject))
+            normalResponse: NormalResponse = self.mainwindow.getResponse("CHAT")
+            if(normalResponse):
+                if(normalResponse.code < 400):
+                    self.inputMessage.setText("")   
+                    message = "You: " + input_message
+                    self.socketSignal2.emit(message)
+
+    def getOpponentMessage(self):
+        while True:
+            if self.stop:
+                break
+            opponentMessageResponse: ActiveResponse = self.mainwindow.getActiveResponse("OCHT");
+            if opponentMessageResponse:
+                opponentMessageObject = json.loads(opponentMessageResponse.data)
+                print(opponentMessageObject)
+                opponentMessage = opponentMessageObject["message"]
+                opponentIngame = opponentMessageObject["op_ingame"]
+                self.inputMessage.setText("") 
+                message = opponentIngame + ": " + opponentMessage
+                self.socketSignal2.emit(message)
+
+    def addNewWidget(self, message):
+        chat = Chat(message)
+        area = self.scrollArea
+        vbar = area.verticalScrollBar()
+        vbar.setValue(vbar.maximum())
+        self.gridLayout_2.addWidget(chat) 
+
+    def closeLoop(self):
+        self.stop = True
+        self.t1.join()
+        self.t2.join()

@@ -87,14 +87,15 @@ class RegisterLogin(QWidget):
             self.mainwindow.sendRequest(createRequest("LOGN",loginObject))
             # send the information to server to check
             normalResponse: NormalResponse = self.mainwindow.getResponse("LOGN")
-            responseObject = json.loads(normalResponse.data)
-            if (normalResponse.code < 400):
-                self.mainwindow.ingame = responseObject["inGame"]
-                self.mainwindow.gotoHome()
-            else:
-                msg = QMessageBox()
-                msg.setWindowTitle("")
-                msg.setText(responseObject["message"])
-                msg.setIcon(QMessageBox.Warning)
-                msg.exec_()
-                self.input_log_username.setFocus()
+            if(normalResponse):
+                responseObject = json.loads(normalResponse.data)
+                if (normalResponse.code < 400):
+                    self.mainwindow.ingame = responseObject["inGame"]
+                    self.mainwindow.gotoHome()
+                else:
+                    msg = QMessageBox()
+                    msg.setWindowTitle("")
+                    msg.setText(responseObject["message"])
+                    msg.setIcon(QMessageBox.Warning)
+                    msg.exec_()
+                    self.input_log_username.setFocus()

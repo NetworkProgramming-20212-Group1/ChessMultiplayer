@@ -18,8 +18,8 @@ class Friend(QWidget):
         self.addFriend()
         self.socketSignal.connect(self.addNewWidget)
         try:
-            t1 = threading.Thread(target=self.getFriendList, args=(), daemon=True)
-            t1.start()
+            self.t1 = threading.Thread(target=self.getFriendList, args=(), daemon=True)
+            self.t1.start()
         except:
             print ("create thread error")
 
@@ -48,6 +48,8 @@ class Friend(QWidget):
                 msg.exec_()
 
     def getFriendList(self):
+        friendWidgetIndex = self.mainwindow.getCurrentIndex() + 1
+        # print(friendWidgetIndex)
         while True:
             getFriendListObject = FriendListObject(self.ingame)
             self.mainwindow.sendRequest(createRequest("FRND", getFriendListObject))
@@ -59,11 +61,14 @@ class Friend(QWidget):
                         self.socketSignal.emit(x)
             self.clearDisplay()
             time.sleep(3)
+            currentWidgetIndex = self.mainwindow.getCurrentIndex()
+            # print(currentWidgetIndex)
+            if (friendWidgetIndex != currentWidgetIndex):
+                break
 
     def addNewWidget(self, x):
         friendList = FriendList(self.mainwindow, x)
         self.verticalLayout.addWidget(friendList)
-
 
     def clearDisplay(self):
         for i in reversed(range(self.verticalLayout.count())): 

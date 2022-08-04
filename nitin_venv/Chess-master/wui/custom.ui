@@ -363,7 +363,7 @@ padding-bottom: 5px</string>
               <height>335</height>
              </rect>
             </property>
-            <layout class="QGridLayout" name="grid"/>
+            <layout class="QGridLayout" name="gridLayout_2"/>
            </widget>
           </widget>
          </item>

@@ -103,7 +103,7 @@
           <widget class="QWidget" name="widget_10" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_9">
             <item>
-             <widget class="QLabel" name="rank">
+             <widget class="QLabel" name="username">
               <property name="font">
                <font>
                 <family>Poor Richard</family>
@@ -111,7 +111,7 @@
                </font>
               </property>
               <property name="text">
-               <string>rank</string>
+               <string>username</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -125,7 +125,7 @@
           <widget class="QWidget" name="widget_13" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_12">
             <item>
-             <widget class="QLabel" name="rank_inf">
+             <widget class="QLabel" name="username_inf">
               <property name="font">
                <font>
                 <family>Poor Richard</family>
@@ -133,10 +133,32 @@
                </font>
               </property>
               <property name="text">
-               <string>gold</string>
+               <string/>
               </property>
               <property name="textFormat">
                <enum>Qt::AutoText</enum>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QWidget" name="widget_14" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_11">
+            <item>
+             <widget class="QLabel" name="password_inf">
+              <property name="font">
+               <font>
+                <family>Poor Richard</family>
+                <pointsize>18</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string/>
               </property>
               <property name="alignment">
                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
@@ -150,7 +172,7 @@
           <widget class="QWidget" name="widget_11" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_10">
             <item>
-             <widget class="QLabel" name="level">
+             <widget class="QLabel" name="password">
               <property name="font">
                <font>
                 <family>Poor Richard</family>
@@ -158,32 +180,10 @@
                </font>
               </property>
               <property name="text">
-               <string>level</string>
+               <string>password</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
-         </item>
-         <item row="1" column="1">
-          <widget class="QWidget" name="widget_14" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout_11">
-            <item>
-             <widget class="QLabel" name="level_inf">
-              <property name="font">
-               <font>
-                <family>Poor Richard</family>
-                <pointsize>18</pointsize>
-               </font>
-              </property>
-              <property name="text">
-               <string>1</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
               </property>
              </widget>
             </item>
@@ -198,20 +198,7 @@
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <item>
           <widget class="QWidget" name="widget_15" native="true">
-           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="1,2,1">
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
+           <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="2">
             <item>
              <widget class="QLabel" name="Match_history">
               <property name="font">
@@ -225,24 +212,6 @@
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="refreshButton">
-              <property name="font">
-               <font>
-                <family>Poor Richard</family>
-                <pointsize>18</pointsize>
-               </font>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-              </property>
-              <property name="text">
-               <string>Refresh</string>
               </property>
              </widget>
             </item>
@@ -263,7 +232,7 @@ padding-bottom: 5px</string>
               <x>0</x>
               <y>0</y>
               <width>593</width>
-              <height>311</height>
+              <height>320</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout"/>

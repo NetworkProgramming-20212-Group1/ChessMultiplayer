@@ -15,31 +15,37 @@ class Profile(QWidget):
         loadUi("profile.ui",self)
         self.mainwindow = mainwindow
         self.ingame = self.mainwindow.ingame
-        self.getBasicInfo()
         self.socketSignal.connect(self.addNewWidget)
         try:
-            t1 = threading.Thread(target=self.getMatchHistory, args=(), daemon=True)
-            t1.start()
+            self.t1 = threading.Thread(target=self.getBasicInfo, args=(), daemon=True)
+            self.t1.start()
         except:
             print ("create thread error")
 
     def getBasicInfo(self): 
+        profileWidgetIndex = self.mainwindow.getCurrentIndex() + 1
+        # print(profileWidgetIndex)
         while True:
             profileObject = ProfileObject(self.ingame)
-            self.mainwindow.sendRequest(createRequest("PROF", profileObject))
-            normalResponse: NormalResponse = self.mainwindow.getResponse("PROF")
+            self.mainwindow.sendRequest(createRequest("INFO", profileObject))
+            normalResponse: NormalResponse = self.mainwindow.getResponse("INFO")
             if(normalResponse):
-                    if(normalResponse.code < 400):
-                        responseObject = json.loads(normalResponse.data)
-                        rank = responseObject["rank"]
-                        self.rank_inf.setText(rank)
-                        level = responseObject["level"]
-                        self.level_inf.setText(level)
-                        matchHistory = responseObject["matchHistory"]
-                        for x in matchHistory:
-                            self.socketSignal.emit(x)
+                if(normalResponse.code < 400):
+                    responseObject = json.loads(normalResponse.data)
+                    userObject = responseObject["user"]
+                    username = userObject["username"]
+                    password = userObject["password"]
+                    self.username_inf.setText(username)
+                    self.password_inf.setText(password)
+                    matchHistory = responseObject["matches"]
+                    for x in matchHistory:
+                        self.socketSignal.emit(x)
             self.clearDisplay()
-            time.sleep(10)
+            time.sleep(200)
+            currentWidgetIndex = self.mainwindow.getCurrentIndex()
+            # print(currentWidgetIndex)
+            if (profileWidgetIndex != currentWidgetIndex):
+                break
 
     def addNewWidget(self, x):
         matchHistory =  MatchHistory(x)

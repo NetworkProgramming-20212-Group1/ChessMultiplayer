@@ -9,10 +9,14 @@ class MatchHistory(QWidget):
         self.eventhandler(self.x)
 
     def eventhandler(self, x):
-        ingame = x["ingame"]
-        self.ingame.setText(ingame)
-        status = x["isOnline"]
-        if not status:
-            self.status.setText("offline")
-        else:
-            self.status.setText("online")
+        id = x["id"]
+        self.matchID.setText(f"match ID: {id}")
+        whiteIngame = x["white"]
+        blackIngame = x["black"]
+        self.color.setText(f"white: {whiteIngame}, black: {blackIngame}")
+        type = x["type"]
+        self.type.setText(f"mode: {type}")
+        winnerIngame = x["winner"]
+        self.winner.setText(f"winner: {winnerIngame}")
+        move = x["state"]
+        self.move.setText(move)

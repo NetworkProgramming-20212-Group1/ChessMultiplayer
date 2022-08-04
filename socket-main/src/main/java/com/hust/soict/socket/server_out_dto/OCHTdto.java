@@ -7,4 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class OCHTdto {
     String message;
+    String op_ingame;
 }

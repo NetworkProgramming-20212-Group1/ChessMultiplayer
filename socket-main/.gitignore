@@ -31,3 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
+socket-main/src/main/resources/

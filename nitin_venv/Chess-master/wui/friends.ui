@@ -181,7 +181,7 @@ padding-bottom: 5px</string>
               <x>0</x>
               <y>0</y>
               <width>691</width>
-              <height>401</height>
+              <height>410</height>
              </rect>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout"/>
@@ -196,20 +196,7 @@ padding-bottom: 5px</string>
              <pointsize>18</pointsize>
             </font>
            </property>
-           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,2,1">
-            <item>
-             <spacer name="horizontalSpacer">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
+           <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="2">
             <item>
              <widget class="QLabel" name="Your_friends">
               <property name="font">
@@ -226,21 +213,6 @@ padding-bottom: 5px</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="refreshButton">
-              <property name="cursor">
-               <cursorShape>OpenHandCursor</cursorShape>
-              </property>
-              <property name="styleSheet">
-               <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-              </property>
-              <property name="text">
-               <string>Refresh</string>
               </property>
              </widget>
             </item>

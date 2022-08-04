@@ -1,3 +1,4 @@
+from os import close
 from PyQt5.uic import loadUi
 from components.room import Room
 from components.roomConfiguration import RoomConfiguration
@@ -11,7 +12,7 @@ import threading
 
 class Play(QWidget):
     socketSignal = QtCore.pyqtSignal(object)
-
+    stop = False
     def __init__(self, mainwindow: QMainWindow):
         super(Play,self).__init__()
         self.mainwindow = mainwindow
@@ -19,8 +20,8 @@ class Play(QWidget):
         self.eventHandler()
         self.socketSignal.connect(self.addNewWidget)
         try:
-            t1 = threading.Thread(target=self.getRoom, args=(), daemon=True)
-            t1.start()
+            self.t1 = threading.Thread(target=self.getRoom, args=(), daemon=True)
+            self.t1.start()
         except:
             print ("create thread error")
 
@@ -47,6 +48,7 @@ class Play(QWidget):
             normalResponse: NormalResponse = self.mainwindow.getResponse("CRRM")
             responseObject = json.loads(normalResponse.data)
             if(normalResponse.code < 400):
+                self.closeLoop()
                 self.mainwindow.gotoCustom(responseObject)
             else:
                 msg = QMessageBox()
@@ -61,7 +63,11 @@ class Play(QWidget):
 
 # hien thi phong co pw hay ko 
     def getRoom(self):
+        playWidgetIndex = self.mainwindow.getCurrentIndex() + 1
+        # print(playWidgetIndex)
         while True:
+            if self.stop:
+                break
             self.mainwindow.sendRequest(createRequest("ROOM", None))
             normalResponse: NormalResponse = self.mainwindow.getResponse("ROOM")
             if normalResponse:
@@ -70,11 +76,19 @@ class Play(QWidget):
                     for x in responseObject:
                         self.socketSignal.emit(x)
             self.clearDisplay()
-            time.sleep(3)
+            time.sleep(5)
+            currentWidgetIndex = self.mainwindow.getCurrentIndex()
+            # print(currentWidgetIndex)
+            if (playWidgetIndex != currentWidgetIndex):
+                break
         
     def addNewWidget(self, x):
-        openRoom = Room(self.mainwindow, x)
+        openRoom = Room(self, self.mainwindow, x)
         self.verticalLayout_2.addWidget(openRoom)
+
+    def closeLoop(self):
+        self.stop = True
+        self.t1.join()
 
     def clearDisplay(self):
         for i in reversed(range(self.verticalLayout_2.count())): 

@@ -11,7 +11,6 @@ from widgets.loginregister import RegisterLogin
 from widgets.home import Home
 from widgets.profile import Profile
 from widgets.friends import Friend
-from widgets.group import Group
 from widgets.play import Play
 from widgets.custom import Custom
 from widgets.pvp import PVP
@@ -44,7 +43,7 @@ class MainWindow(QMainWindow):
 
     def gotoRegister(self):
         reglog=RegisterLogin(mainwindow)
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         self.leftWidget.hide()
         self.scrollArea.hide()
         widget.addWidget(reglog)
@@ -55,7 +54,7 @@ class MainWindow(QMainWindow):
         home=Home(self.ingame)
         self.scrollArea.show()
         self.leftWidget.show()
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         widget.addWidget(home)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(home)
@@ -67,28 +66,21 @@ class MainWindow(QMainWindow):
 
     def gotoProfile(self):
         profile=Profile(mainwindow)
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         widget.addWidget(profile)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(profile)
 
     def gotoFriend(self):
         friend=Friend(mainwindow)
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         widget.addWidget(friend)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(friend)
 
-    def gotoGroup(self):
-        group=Group()
-        widget.removeWidget(widget.currentWidget())
-        widget.addWidget(group)
-        widget.setCurrentIndex(widget.currentIndex()+1)
-        widget.setCurrentWidget(group)
-
     def gotoPlay(self):
         play=Play(mainwindow)
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         widget.addWidget(play)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(play)
@@ -109,9 +101,9 @@ class MainWindow(QMainWindow):
         logoutObject = LogoutObject(self.ingame)
         self.sendRequest(createRequest("LOUT",logoutObject))
         reglog=RegisterLogin(mainwindow)
-        widget.removeWidget(widget.currentWidget())
+        # widget.removeWidget(widget.currentWidget())
         self.leftWidget.hide()
-        self.rightWidget.hide()
+        self.scrollArea.hide()
         widget.addWidget(reglog)
         widget.setCurrentIndex(widget.currentIndex()+1)
         widget.setCurrentWidget(reglog)
@@ -124,6 +116,8 @@ class MainWindow(QMainWindow):
         self.chessWindow = ChessWindow(mainwindow, id, color)
         self.chessWindow.show()
         
+    def getCurrentIndex(self):
+        return widget.currentIndex()
 
     def sendRequest(self, message: string):
         if message=="close":
@@ -141,7 +135,7 @@ class MainWindow(QMainWindow):
             for x in self.normal_response:
                 if x.type == rtype:
                     self.normal_response.remove(x)
-                    print(x)        
+                    # print(x)        
                     return x
             # if more than 1s -> break;
         return None
@@ -162,7 +156,7 @@ class MainWindow(QMainWindow):
 def getRequest(s, normal_response, active_response):
     while True:
         # print(normal_response)
-        data: string = s.recv(1024).decode('ascii')
+        data: string = s.recv(10000).decode('ascii')
         begin = data[0:4]
         if begin == "REPL":
             response = [data[0:4],data[5:9], data[10:13], data[14:]]
@@ -174,6 +168,8 @@ def getRequest(s, normal_response, active_response):
         with open('../windows/server_response.txt', 'a') as f:
             output = '['+datetime.now().strftime("%H:%M:%S")+']: '+data
             f.write(output)
+
+           
 
 if __name__ == "__main__":
     app=QApplication(sys.argv)
