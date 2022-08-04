@@ -100,3 +100,14 @@ phananh: OPMV {"move":"PA++","game_state":"P7A5A P7A5A PA++ "}
 Error:
 REPL UNDF 400 {"message":"Not your turn"} // neu di 2 luot lien tiep
 
+
+************************CHAT ROOM******************
+tuan join phong
+na join phong
+tuan: CHAT {"roomid": "123", "message": "ban danh hay qua"}
+na: OCHT {"message": "ban danh hay qua"}
+
+********************INFO******************
+tuan login
+tuan: INFO
+tuan:  REPL INFO 200 {"user":{"id":2,"username":"ming2","password":"123456","inGame":"ming2"},"matches":[{"id":5,"white":"ming","black":"ming2","state":"P7A5A P7A5A++ ","winner":"ming","type":"CUSTOM"},{"id":6,"white":"ming","black":"ming2","state":"P7A6A D7A5A++ ","winner":"ming","type":"CUSTOM"}]}

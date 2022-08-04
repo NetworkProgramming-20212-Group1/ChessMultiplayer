@@ -22,19 +22,20 @@ public class RequestMapper {
     @Autowired
     Gson g;
 
-    public String handle(String request, PrintWriter dos, ClientHandler clientHandler){
+    public String handle(String request, PrintWriter dos, ClientHandler clientHandler) {
+        MyRequest myRequest = null;
         try {
-            String header = request.substring(0,4);
+            String header = request.substring(0, 4);
             String payload = request.substring(4);
-            MyRequest myRequest = new MyRequest(header,payload);
+            myRequest = new MyRequest(header, payload);
             MyResponse myResponse;
             switch (myRequest.getType()) {
-                case "LOGN" :
+                case "LOGN":
                     // when user login, he/she will be added to active client list at SocketApplication, the current thread PrintWiter will be send to that map
                     LOGNdto logNdto = g.fromJson(myRequest.getArguments(), LOGNdto.class);
                     myResponse = userController.login(logNdto.getUsername(), logNdto.getPassword(), dos, clientHandler);
                     break;
-                case "LOUT" :
+                case "LOUT":
                     // when user logout, he/she will be removed to active client list at SocketApplication
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
@@ -44,23 +45,23 @@ public class RequestMapper {
                     myResponse = userController.logout(clientHandler.user.getInGame());
                     break;
 
-                case "REGT" :
+                case "REGT":
                     REGTdto regTdto = g.fromJson(myRequest.getArguments(), REGTdto.class);
                     myResponse = userController.register(regTdto.getUsername(), regTdto.getPassword(), regTdto.getIngame());
                     break;
 
-                case "ADFR" :
+                case "ADFR":
                     ADFRdto adfRdto = g.fromJson(myRequest.getArguments(), ADFRdto.class);
-                    if (adfRdto.getIngame()==null)
+                    if (adfRdto.getIngame() == null)
                         throw new Exception("ADFR wrong format");
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     myResponse = userController.addFriend(adfRdto.getIngame(), clientHandler.user.getInGame());
                     break;
 
-                case "ACFR" :
+                case "ACFR":
                     ACFRdto acfRdto = g.fromJson(myRequest.getArguments(), ACFRdto.class);
-                    if (acfRdto.getIngame()==null)
+                    if (acfRdto.getIngame() == null)
                         throw new Exception("ACFR wrong format");
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
@@ -69,9 +70,9 @@ public class RequestMapper {
                     myResponse = userController.acceptFriend(acfRdto.getIngame(), clientHandler);
                     break;
 
-                case "FRND" :
+                case "FRND":
                     FRNDdto frnDdto = g.fromJson(myRequest.getArguments(), FRNDdto.class);
-                    if (frnDdto.getIngame()==null)
+                    if (frnDdto.getIngame() == null)
                         throw new Exception("FRND wrong format");
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
@@ -80,49 +81,65 @@ public class RequestMapper {
                     myResponse = userController.getFriend(clientHandler);
                     break;
 
-                case "CRRM" :
+                case "CRRM":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     CRRMdto crrMdto = g.fromJson(myRequest.getArguments(), CRRMdto.class);
                     myResponse = roomController.createRoom(clientHandler, crrMdto.getId(), crrMdto.getPassword(), crrMdto.getType());
                     break;
-                case "JNRM" :
+                case "JNRM":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     JNRMdto jnrMdto = g.fromJson(myRequest.getArguments(), JNRMdto.class);
-                    myResponse = roomController.joinRoom(clientHandler,jnrMdto.getRoomid(),jnrMdto.getPassword());
+                    myResponse = roomController.joinRoom(clientHandler, jnrMdto.getRoomid(), jnrMdto.getPassword());
                     break;
-                case "PLAY" :
+                case "PLAY":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     PLAYdto plaYdto = g.fromJson(myRequest.getArguments(), PLAYdto.class);
-                    myResponse = matchController.play(clientHandler,plaYdto.getRoomid());
+                    myResponse = matchController.play(clientHandler, plaYdto.getRoomid());
                     break;
-                case "MOVE" :
+                case "MOVE":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     MOVEdto movEdto = g.fromJson(myRequest.getArguments(), MOVEdto.class);
-                    myResponse = matchController.move(clientHandler,movEdto.getMatchid(), movEdto.getMove());
+                    myResponse = matchController.move(clientHandler, movEdto.getMatchid(), movEdto.getMove());
                     break;
-                case "ROOM" :
+                case "ROOM":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     myResponse = roomController.getRooms();
                     break;
-                case "LVRM" :
+                case "LVRM":
                     if (clientHandler.user == null)
                         throw new Exception("Must login first");
                     LVRMdto lvrMdto = g.fromJson(myRequest.getArguments(), LVRMdto.class);
 
-                    myResponse = roomController.leaveRoom(clientHandler,lvrMdto.getRoomid());
+                    myResponse = roomController.leaveRoom(clientHandler, lvrMdto.getRoomid());
+                    break;
+                case "CHAT":
+                    if (clientHandler.user == null)
+                        throw new Exception("Must login first");
+                    CHATdto chaTdto = g.fromJson(myRequest.getArguments(), CHATdto.class);
+
+                    myResponse = roomController.chat(clientHandler, chaTdto.getRoomid(), chaTdto.getMessage());
+                    break;
+                case "INFO":
+                    if (clientHandler.user == null)
+                        throw new Exception("Must login first");
+                    myResponse = userController.info(clientHandler);
                     break;
                 default:
-                    return new MyResponse(400,g.toJson(new ErrorMsg("Message type not correct")),myRequest.getType()).toString();
+                    return new MyResponse(400, g.toJson(new ErrorMsg("Message type not correct")), myRequest.getType()).toString();
             }
             myResponse.setType(myRequest.getType());
             return myResponse.toString();
         } catch (Exception e) {
-            return new MyResponse(400,g.toJson(new ErrorMsg(e.getMessage())), "UNDF").toString();
+            if (myRequest!=null)
+                return new MyResponse(400, g.toJson(new ErrorMsg(e.getMessage())), myRequest.getType()).toString();
+            else
+                return new MyResponse(400, g.toJson(new ErrorMsg(e.getMessage())), "UNDF").toString();
+
         }
 
     }

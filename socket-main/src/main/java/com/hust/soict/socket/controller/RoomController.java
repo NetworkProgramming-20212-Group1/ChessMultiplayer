@@ -9,6 +9,7 @@ import com.hust.soict.socket.mapping.MyResponse;
 import com.hust.soict.socket.mapping.ServerResponse;
 import com.hust.soict.socket.response_object.RoomResonse;
 import com.hust.soict.socket.server_out_dto.JOINdto;
+import com.hust.soict.socket.server_out_dto.OCHTdto;
 import com.hust.soict.socket.server_out_dto.OLVRdto;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -112,6 +113,27 @@ public class RoomController {
             SocketApplication.rooms.remove(roomid);
         }
 
+        return new MyResponse(200,"OK");
+    }
+
+    public MyResponse chat(ClientHandler clientHandler, String roomid, String message) throws Exception {
+        System.out.println("Chat handler...");
+        if (!SocketApplication.rooms.containsKey(roomid))
+            throw new Exception("Room not exist");
+        Room room = SocketApplication.rooms.get(roomid);
+        if (room.isFull()) {
+            String opponent = "";
+            if (room.getWhite().equals(clientHandler.user.getInGame())){
+                opponent = room.getBlack();
+            }
+            if (room.getBlack().equals(clientHandler.user.getInGame())){
+                opponent = room.getWhite();
+            }
+            OCHTdto ochTdto = new OCHTdto(message);
+            ServerResponse serverResponse = new ServerResponse("OCHT", gson.toJson(ochTdto));
+            PrintWriter opponentDos = SocketApplication.activeClient.get(opponent);
+            opponentDos.println(serverResponse);
+        }
         return new MyResponse(200,"OK");
     }
 }

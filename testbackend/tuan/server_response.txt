@@ -1,3 +1,35 @@
 [16:41:34]: REPL LOGN 200 {"id":4,"username":"tuan","password":"123","inGame":"tuan"}
 [16:43:02]: FRRQ {"ingame":"phananh"}
 [16:46:07]: REPL ACFR 200 OK
+[15:49:27]: REPL LOGN 200 {"id":2,"username":"ming2","password":"123456","inGame":"ming2"}
+[15:50:24]: REPL  JNR 400 {"message":"Message type not correct"}
+[15:50:36]: REPL JNRM 200 {"id":"123","white":"ming","black":"ming2","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+[15:51:04]: REPL CHAT 400 {"message":"Message type not correct"}
+[15:52:14]: REPL CHAT 400 {"message":"Message type not correct"}
+[15:52:23]: REPL CHAT 400 {"message":"Message type not correct"}
+[15:52:38]: REPL CHAT 400 {"message":"Message type not correct"}
+[15:54:06]: REPL CHAT 400 {"message":"Message type not correct"}
+[15:55:34]: REPL LOGN 200 {"id":2,"username":"ming2","password":"123456","inGame":"ming2"}
+[15:55:45]: REPL JNRM 200 {"id":"123","white":"ming","black":"ming2","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+[15:56:01]: REPL CHAT 200 OK
+[15:56:32]: REPL CHAT 200 OK
+[15:57:04]: CHAT {"message":"ban danh hay qua"}
+[16:17:18]: REPL LOGN 200 {"id":2,"username":"ming2","password":"123456","inGame":"ming2"}
+[16:17:24]: REPL INFO 200 {"user":{"id":2,"username":"ming2","password":"123456","inGame":"ming2"},"matches":[]}
+[16:18:47]: REPL JNRM 200 {"id":"123","white":"ming","black":"ming2","isWhiteOwner":true,"password":"123","type":"CUSTOM"}
+[16:19:25]: STRT {"match":{"id":5,"white":"ming","black":"ming2","state":"","type":"CUSTOM"},"isWhiteTurn":true}
+[16:19:53]: OPMV {"move":"P7A5A","game_state":"P7A5A "}
+[16:20:10]: REPL MOVE 200 {"move":"P7A5A++","game_state":"P7A5A P7A5A++ "}
+[16:20:38]: REPL INFO 200 {"user":{"id":2,"username":"ming2","password":"123456","inGame":"ming2"},"matches":[{"id":5,"white":"ming","black":"ming2","state":"P7A5A P7A5A++ ","winner":"ming","type":"CUSTOM"}]}
+[16:21:00]: STRT {"match":{"id":6,"white":"ming","black":"ming2","state":"","type":"CUSTOM"},"isWhiteTurn":true}
+[16:21:19]: OPMV {"move":"P7A6A","game_state":"P7A6A "}
+[16:21:32]: REPL MOVE 200 {"move":"D7A5A++","game_state":"P7A6A D7A5A++ "}
+[16:21:37]: REPL INFO 200 {"user":{"id":2,"username":"ming2","password":"123456","inGame":"ming2"},"matches":[{"id":5,"white":"ming","black":"ming2","state":"P7A5A P7A5A++ ","winner":"ming","type":"CUSTOM"},{"id":6,"white":"ming","black":"ming2","state":"P7A6A D7A5A++ ","winner":"ming","type":"CUSTOM"}]}
+[16:22:46]: REPL REGT 406 {"message":"User name exist"}
+[16:22:59]: REPL REGT 200 OK
+[16:23:09]: REPL LOGN 200 {"id":8,"username":"phananh","password":"123","inGame":"phananh"}
+[16:23:13]: REPL INFO 200 {"user":{"id":8,"username":"phananh","password":"123","inGame":"phananh"},"matches":[]}
+[16:28:30]: REPL LOGN 200 {"id":8,"username":"phananh","password":"123","inGame":"phananh"}
+[16:28:35]: REPL LOGN 406 {"message":"Bad Credential"}
+[16:28:59]: REPL REGT 406 {"message":"User name exist"}
+[16:29:10]: REPL REGT 400 {"message":"com.google.gson.stream.MalformedJsonException: Unterminated string at line 1 column 11 path $."}

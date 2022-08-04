@@ -3,10 +3,13 @@ package com.hust.soict.socket.controller;
 import com.google.gson.Gson;
 import com.hust.soict.socket.ClientHandler;
 import com.hust.soict.socket.SocketApplication;
+import com.hust.soict.socket.domain.Matches;
 import com.hust.soict.socket.domain.User;
+import com.hust.soict.socket.domain.UserInfo;
 import com.hust.soict.socket.mapping.ErrorMsg;
 import com.hust.soict.socket.mapping.MyResponse;
 import com.hust.soict.socket.response_object.FriendResponse;
+import com.hust.soict.socket.service.MatchService;
 import com.hust.soict.socket.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,6 +21,8 @@ import java.util.List;
 @AllArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final MatchService matchService;
+
     private Gson gson;
     public MyResponse login(String username, String password, PrintWriter dos, ClientHandler clientHandler){
         // TODO save client handler instead of dos to active client list
@@ -94,6 +99,21 @@ public class UserController {
             String currentIngame = clientHandler.user.getInGame();
             List<FriendResponse> list = userService.getFriend(currentIngame);
             return new MyResponse(200,gson.toJson(list));
+        } catch (Exception e){
+            return new MyResponse(406,gson.toJson(new ErrorMsg(e.getMessage())));
+        }
+    }
+
+    public MyResponse info(ClientHandler clientHandler) {
+        System.out.println("User info handler...");
+        try {
+            String currentIngame = clientHandler.user.getInGame();
+            User user = userService.getInfo(currentIngame);
+            List<Matches> matches = matchService.getMatches(currentIngame);
+
+            UserInfo userInfo = new UserInfo(user, matches);
+            System.out.println(gson.toJson(userInfo));
+            return new MyResponse(200,gson.toJson(userInfo));
         } catch (Exception e){
             return new MyResponse(406,gson.toJson(new ErrorMsg(e.getMessage())));
         }

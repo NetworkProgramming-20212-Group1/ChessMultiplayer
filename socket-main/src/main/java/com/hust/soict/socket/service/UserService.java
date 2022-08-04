@@ -66,4 +66,8 @@ public class UserService {
         });
         return list;
     }
+
+    public User getInfo(String currentIngame) throws Exception {
+        return userRepo.findByInGame(currentIngame).orElseThrow(()->new Exception("User not found"));
+    }
 }
