@@ -76,7 +76,7 @@ class Play(QWidget):
                     for x in responseObject:
                         self.socketSignal.emit(x)
             self.clearDisplay()
-            time.sleep(20)
+            time.sleep(10)
             currentWidgetIndex = self.mainwindow.getCurrentIndex()
             # print(currentWidgetIndex)
             if (playWidgetIndex != currentWidgetIndex):
