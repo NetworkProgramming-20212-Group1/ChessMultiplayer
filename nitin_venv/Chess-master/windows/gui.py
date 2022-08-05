@@ -117,7 +117,7 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
 
                 # TO DO: lay reply cua move -> if move ++ -> show notification: "You lose!" -> click ok -> close window, check database xem co luu match khong
                 if "++" in inputAlgebra:
-                    self.printText("You lose! Continue?")
+                    self.printText("You win! Continue?")
                     self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))                    
                     self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
                     # self.no.clicked.connect(self.closeThread)
@@ -175,7 +175,7 @@ class ChessWindow(QMainWindow, Ui_MainWindow):
                             responseObject = json.loads(moveResponse.data)
                             move = responseObject["move"]
                             if "++" in move:
-                                self.printText("You win! Continue?")
+                                self.printText("You lose! Continue?")
                                 self.yes.setGeometry(QtCore.QRect(self.yes.x(), 920, 100, 60))
                                 self.no.setGeometry(QtCore.QRect(self.no.x(), 920, 100, 60))
                                 # self.no.clicked.connect(self.closeChessWindow)

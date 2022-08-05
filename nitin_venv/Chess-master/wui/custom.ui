@@ -288,56 +288,12 @@ padding-bottom: 5px</string>
            <layout class="QVBoxLayout" name="verticalLayout_6">
             <item>
              <widget class="QWidget" name="widget_22" native="true">
-              <layout class="QHBoxLayout" name="horizontalLayout_13">
-               <item>
-                <widget class="QPushButton" name="inviteFriend">
-                 <property name="font">
-                  <font>
-                   <family>Poor Richard</family>
-                   <pointsize>18</pointsize>
-                  </font>
-                 </property>
-                 <property name="cursor">
-                  <cursorShape>PointingHandCursor</cursorShape>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-                 </property>
-                 <property name="text">
-                  <string>invite Friend</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <layout class="QHBoxLayout" name="horizontalLayout_13"/>
              </widget>
             </item>
             <item>
              <widget class="QWidget" name="inviteGroup" native="true">
-              <layout class="QHBoxLayout" name="horizontalLayout_14">
-               <item>
-                <widget class="QPushButton" name="pushButton_7">
-                 <property name="font">
-                  <font>
-                   <family>Poor Richard</family>
-                   <pointsize>18</pointsize>
-                  </font>
-                 </property>
-                 <property name="cursor">
-                  <cursorShape>OpenHandCursor</cursorShape>
-                 </property>
-                 <property name="styleSheet">
-                  <string notr="true">border-radius : 100; 
-border : 2px solid black;
-padding-bottom: 5px</string>
-                 </property>
-                 <property name="text">
-                  <string>invite Group</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
+              <layout class="QHBoxLayout" name="horizontalLayout_14"/>
              </widget>
             </item>
            </layout>

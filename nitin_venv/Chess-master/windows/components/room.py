@@ -1,5 +1,5 @@
 from PyQt5.uic import loadUi
-from PyQt5.QtWidgets import QWidget, QMainWindow
+from PyQt5.QtWidgets import QWidget, QMainWindow, QMessageBox
 from components.roomPassword import RoomPassword
 from response import *
 from request import *
@@ -41,3 +41,9 @@ class Room(QWidget):
                 responseObject = json.loads(normalResponse.data)
                 self.parent.closeLoop()
                 self.mainwindow.gotoCustom(responseObject)
+            else:
+                msg = QMessageBox()
+                msg.setWindowTitle("")
+                msg.setText("Wrong password")
+                msg.setIcon(QMessageBox.Warning)
+                msg.exec_()
