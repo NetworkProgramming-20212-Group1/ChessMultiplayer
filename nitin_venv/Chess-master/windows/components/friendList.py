@@ -8,7 +8,6 @@ class FriendList(QWidget):
         loadUi("friendList.ui",self)   
         self.x = x
         self.eventhandler(self.x)
-        self.unfriend_button.clicked.connect(lambda: self.unfriend(self.x))
 
     def eventhandler(self, x):
         ingame = x["ingame"]
@@ -19,16 +18,4 @@ class FriendList(QWidget):
         else:
             self.status.setText("online")
 
-    def unfriend(self, x):
-        ingame = x["ingame"]
-        unfriendObject = UnfriendObject(ingame)
-        self.mainwindow.sendRequest(createRequest("UNFR",unfriendObject))
-        normalResponse: NormalResponse = self.mainwindow.getResponse("UNFR")
-        if(normalResponse):
-            if (normalResponse.code < 400):
-                responseObject = json.loads(normalResponse.data)
-                unfriend_ingame = responseObject["ingame"]
-                msg = QMessageBox() 
-                msg.setWindowTitle("Unfriend")
-                msg.setText(unfriend_ingame + " is deleted from your friend list")
-                msg.exec_()
+   
