@@ -2,3 +2,14 @@ __pycache__/
 .vscode/
 
 nitin_venv/Chess-master/windows/server_response.txt
+
+# Default ignored files
+/shelf/
+/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+
+testbackend/
